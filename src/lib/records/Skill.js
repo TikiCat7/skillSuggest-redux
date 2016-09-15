@@ -11,9 +11,14 @@ export default class Skill extends _skill {
   static fromJS(skill = {}) {
     return (new this).merge({
       id: parseInt(skill.id),
-      name: skill.name
-      assignee_id: skill.assignee_id
-      assignee_name: skill.assignee_name
+      name: skill.name,
+      assignee_id: skill.assignee_id,
+      assignee_name: skill.assignee_name,
     })
+  }
+
+  // can add helper functinos in model definition
+  isValidName() {
+    return this.name.length > 0
   }
 }

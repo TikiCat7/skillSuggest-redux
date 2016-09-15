@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 import { List } from 'immutable'
 
-// import immutable records
-//import Issue from '../lib/records/Issue'
+// import our immutable models
+import User from '../lib/records/User'
+import Skill from '../lib/records/Skill'
 
-// import actions for the reducers
-//import IssueActions from '../actions/issue'
+// import actions for our User model
+import UserActions from '../actions/user'
+
 function addTodo(todo) {
   return {
     type: 'ADD_TODO',
@@ -13,7 +15,7 @@ function addTodo(todo) {
   }
 }
 
-// reducer (pure function)
+// reducer (pure function) NOT MADE WITH IMMUTABLEJS
 function todos(state = ['buy eggs','buy milk','pay bills'], action) {
   switch (action.type) {
     case 'ADD_TODO':
@@ -25,7 +27,22 @@ function todos(state = ['buy eggs','buy milk','pay bills'], action) {
   }
 }
 
+function userList(state = new List(), action) {
+console.log('inside userList reducer')
+console.log(action)
+  switch (action.type) {
+    case 'ADD_USER':
+      console.log("ADD USER action fired")
+      console.log(action.users)
+      return action.users
+    default:
+      break // do nothing
+  }
+  return state
+}
+
 // export combine reducers
 export default combineReducers({
-  todos
+  todos,
+  userList
 })

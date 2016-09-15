@@ -25,7 +25,10 @@ export default class User extends _User {
       name: user.name,
       job: user.job,
       age: parseInt(user.age),
-      skills  // save List in User objects
+      //skills  // save List in User objects
     })
+  }
+  isValidName() {
+    return this.name.length > 0
   }
 }
