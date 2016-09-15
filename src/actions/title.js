@@ -1,4 +1,4 @@
-export default function addTodoAction(todo) {
+export function addTodoAction(todo) {
     return {
       type:'ADD_TODO',
       text:todo

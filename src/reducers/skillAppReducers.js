@@ -41,8 +41,19 @@ console.log(action)
   return state
 }
 
+function allUsers(state = new List(), action) {
+  switch(action.type) {
+    case 'SET_ALL_DATA':
+      return action.allUserData
+    default:
+      break
+    }
+  return state
+}
+
 // export combine reducers
 export default combineReducers({
   todos,
-  userList
+  userList,
+  allUsers
 })

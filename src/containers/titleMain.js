@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import addTodoAction from '../actions/title'
-import addUser from '../actions/user'
+import { addTodoAction } from '../actions/title'
+import { addUser } from '../actions/user'
 
 import TodoInputBox from '../components/todoInputBox'
 import TodoDisplay from '../components/todoDisplay'
 import UserDisplay from '../components/userDisplay'
 
+import AllUserDataContainer from '../containers/allUserDataContainer'
+
 class TitleMain extends Component {
+
   onAddTodo(value) {
     this.props.addTodoAction(value)
   }
@@ -26,9 +29,10 @@ class TitleMain extends Component {
 
     return (
       <div>
-        <TodoInputBox onTodoAdd={this.onAddTodo.bind(this)}/>
+        <TodoInputBox onAddTodo={this.onAddTodo.bind(this)}/>
         <TodoDisplay todos={todos} />
         <UserDisplay users={userList} onAddUser={this.onAddUser.bind(this)}/>
+        <AllUserDataContainer />
       </div>
     )
   }

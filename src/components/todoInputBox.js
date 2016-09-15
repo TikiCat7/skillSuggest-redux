@@ -21,7 +21,7 @@ class TodoInputBox extends Component {
   }
 
   handleTodoAdd() {
-    this.props.onTodoAdd(this.state.todo)
+    this.props.onAddTodo(this.state.todo)
     this.setState({todo:''})
   }
 
@@ -36,7 +36,7 @@ class TodoInputBox extends Component {
 }
 
 TodoInputBox.propTypes = {
-  onTodoAdd: PropTypes.func.isRequired
+  onAddTodo: PropTypes.func.isRequired
 }
 
 export default CSSModules(TodoInputBox, styles)
