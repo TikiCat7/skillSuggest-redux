@@ -12,8 +12,8 @@ const _User = Record({
 
 export default class User extends _User {
   static fromJS(user = {}) {
-    console.log('Creating User...')
-    console.log(user)
+    //console.log('Creating User...')
+    //console.log(user)
 
     let skills = new List()
     // map over skills array and create List of Skill objects

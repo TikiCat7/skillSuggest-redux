@@ -42,6 +42,13 @@ function setAllUserData(allUserData) {
   }
 }
 
+function setCurrentUser(currentUser) {
+  return {
+    type: 'SET_CURRENT_USER',
+    currentUser
+  }
+}
+
 async function requestAllUserData() {
   const response = await $.ajax({
     url: `http://localhost:3000/api/users`,
@@ -50,6 +57,18 @@ async function requestAllUserData() {
     timeout: 100000,
   })
   return initUserData(response)
+}
+
+async function requestUserData(id) {
+  const response = await $.ajax({
+    url: `http://localhost:3000/api/users/${id}`,
+    method: 'GET',
+    dataType: 'json',
+    timeout: 100000,
+  })
+  console.log("got user data")
+  console.log(response)
+  return User.fromJS(response)
 }
 
 
@@ -64,5 +83,25 @@ export function getAllUserData() {
       console.log("error", error)
     }
     //dispatch(setLoading(false)) // toggle loader
+  }
+}
+
+export function getCurrentUser(id) {
+  console.log('get UserData action called')
+  return async(dispatch) => {
+    try {
+      const UserData = await requestUserData(id)
+      dispatch(setCurrentUser(UserData))
+    } catch(error) {
+      console.log("error", error)
+    }
+  }
+}
+
+export function clearCurrentUser() {
+  console.log("clearCurrentUser called")
+  return {
+    type: 'CLEAR_CURRENT_USER',
+    null
   }
 }

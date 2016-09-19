@@ -51,9 +51,24 @@ function allUsers(state = new List(), action) {
   return state
 }
 
+function currentUser(state = new User(), action) {
+  switch(action.type) {
+    case 'SET_CURRENT_USER':
+      console.log(action.currentUser)
+      return action.currentUser
+    case 'CLEAR_CURRENT_USER':
+      console.log("clear CLEAR_CURRENT_USER action receieved")
+      return new User()
+    default:
+      break
+  }
+  return state
+}
+
 // export combine reducers
 export default combineReducers({
   todos,
   userList,
-  allUsers
+  allUsers,
+  currentUser
 })

@@ -14,6 +14,7 @@ import 'babel-polyfill'
 // import container components
 import TitleMain from '../containers/titleMain'
 import UserFormContainer from '../containers/UserFormContainer'
+import CurrentUserDataContainer from '../containers/CurrentUserDataContainer'
 
 // import configureStore file
 import configureStore from '../stores/configureAppStore'
@@ -32,6 +33,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={TitleMain} />
       <Route path="/form" component={UserFormContainer} />
+      <Route path="/user/:id" component={CurrentUserDataContainer} />
     </Router>
   </Provider>,
   document.getElementById('mount')
