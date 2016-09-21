@@ -12,7 +12,7 @@ class AllUserData extends Component {
           return(
             <ul key={user.id}>
               <Link to={`/user/${user.id}`}>{user.name}</Link>
-          </ul>
+            </ul>
           )
         })}
       </div>

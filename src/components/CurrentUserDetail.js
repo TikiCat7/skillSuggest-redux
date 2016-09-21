@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
+
 import RaisedButton from 'material-ui/RaisedButton';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
+
+import CSSModules from 'react-css-modules'
+import styles from './CurrentUserDetail.scss'
 
 class CurrentUserDetail extends Component {
 
@@ -38,9 +42,10 @@ class CurrentUserDetail extends Component {
   }
 
   render() {
+    //　console.log(this.context)
     const { currentUserData } = this.props
     const userSkills = this.calculateSkillsVotes(currentUserData)
-    console.log(userSkills)
+    //console.log(userSkills)
 
     const styles = {
       chip: {
@@ -57,52 +62,51 @@ class CurrentUserDetail extends Component {
     }
 
     const userSkillsWithVotes = userSkills.map((skill) => {
-      return(
-        <Chip
-          style={styles.chip}
-          key={skill.skillName}
-        >
-          <Avatar size={32}>{skill.voteCount}</Avatar>
-          {skill.skillName}
-        </Chip>
-          )
-    })
+      const voters = skill.voters.map((voter) => {
+        return(
+          <ul key={voter.id}>
+            <Link to={`/user/${voter.id}`}>{voter.name}</Link>
+          </ul>
+            )
+            })
+            return(
+            <div styleName="base">
+              <Chip
+                style={styles.chip}
+                key={skill.skillName}
+              >
+                <Avatar size={32}>{skill.voteCount}</Avatar>
+                {skill.skillName}
+              </Chip>
+              {voters}
+            </div>
+            )
+            })
 
-    // const skills = currentUserData.skills.map((skill)=> {
-    //   return(
-    //     <ul key={skill.id}>
-    //       <Chip
-    //         style={styles.chip}
-    //         onRequestDelete={handleRequestDelete}
-    //       >
-    //         {skill.name}
-    //       </Chip>
-    //       <li>
-    //         Skill Name: {skill.name}
-    //       </li>
-    //       <li>
-    //         Skill Assigned By: {skill.assignee_name}
-    //       </li>
-    //     </ul>
-    //   )
-    // })
+        return(
+        <div>
+          <ul>
+            UserID: {currentUserData.id}
+            <li>Name: {currentUserData.name}</li>
+            <li>Job: {currentUserData.job}</li>
+            <li>Age: {currentUserData.age}</li>
+          </ul>
+          Assigned Skills:
+          {userSkillsWithVotes}
+          <div>
+            <RaisedButton
+              styleName="backButton"
+              containerElement={<Link to="/main" />}
+              label="back"/>
+            <button onClick={this.props.handleClick.bind(null,3)}> Test </button>
+          </div>
+        </div>
+        )
+      }
+    }
 
-    return(
-      <div>
-        <ul>
-          UserID: {currentUserData.id}
-          <li>Name: {currentUserData.name}</li>
-          <li>Job: {currentUserData.job}</li>
-          <li>Age: {currentUserData.age}</li>
-        </ul>
-        Assigned Skills:
-        {userSkillsWithVotes}
-        <RaisedButton
-          containerElement={<Link to="/main" />}
-          label="back"/>
-      </div>
-    )
-  }
-}
+  // CurrentUserDetail.contextTypes = {
+  //   router: PropTypes.object.isRequired
+  // }
 
-export default CurrentUserDetail
+export default CSSModules(CurrentUserDetail, styles)

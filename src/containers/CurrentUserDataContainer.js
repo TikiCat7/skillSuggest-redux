@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -11,24 +11,34 @@ class CurrentUserDataContainer extends React.Component {
 
   // when component mounts, dispatch getCurrentUser action
   componentDidMount() {
-    console.log("currentUserContainer Mounted")
+    // console.log("currentUserContainer Mounted")
     this.init()
-  }
-
-  componentWillUnmount() {
-    console.log("CurrentUserDataContainer Unmounting")
-    this.props.clearCurrentUser()
   }
 
   init() {
     this.props.getCurrentUser(this.props.params.id)
   }
 
+  componentWillUnmount() {
+    // console.log("CurrentUserDataContainer Unmounting")
+    this.props.clearCurrentUser()
+  }
+
+  handleClick(id) {
+    console.log(id)
+    console.log(this.context)
+    this.context.router.push(`/user/${id}`)
+  }
+
   render() {
     return(
-      <CurrentUserDetail currentUserData={this.props.currentUser} />
+      <CurrentUserDetail handleClick={this.handleClick.bind(this)} currentUserData={this.props.currentUser} />
     )
   }
+}
+
+CurrentUserDataContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
