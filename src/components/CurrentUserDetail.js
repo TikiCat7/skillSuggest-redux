@@ -98,7 +98,7 @@ class CurrentUserDetail extends Component {
               styleName="backButton"
               containerElement={<Link to="/main" />}
               label="back"/>
-            <button onClick={this.props.handleClick.bind(null,3)}> Test </button>
+            {/*<button onClick={this.props.handleClick.bind(null,3)}> Test </button>*/}
           </div>
         </div>
         )
