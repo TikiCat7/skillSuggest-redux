@@ -28,8 +28,8 @@ function todos(state = ['buy eggs','buy milk','pay bills'], action) {
 }
 
 function userList(state = new List(), action) {
-console.log('inside userList reducer')
-console.log(action)
+//console.log('inside userList reducer')
+//console.log(action)
   switch (action.type) {
     case 'ADD_USER':
       console.log("ADD USER action fired")
@@ -65,10 +65,22 @@ function currentUser(state = new User(), action) {
   return state
 }
 
+function loggedInUser(state = {}, action) {
+  switch(action.type) {
+    case 'SET_LOGGED_IN_USER':
+      console.log(action.user)
+      return action.user
+    default:
+      break
+  }
+  return state
+}
+
 // export combine reducers
 export default combineReducers({
   todos,
   userList,
   allUsers,
-  currentUser
+  currentUser,
+  loggedInUser
 })

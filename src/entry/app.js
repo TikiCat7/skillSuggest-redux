@@ -19,7 +19,7 @@ injectTapEventPlugin();
 
 // import container components
 import TitleMain from '../containers/titleMain'
-import UserFormContainer from '../containers/UserFormContainer'
+import LogInFormContainer from '../containers/LogInFormContainer'
 import CurrentUserDataContainer from '../containers/CurrentUserDataContainer'
 
 // import navbar component
@@ -49,7 +49,7 @@ const App = () => (
         <Router history={history}>
           <Route path="/" component={NavBar} >
             <Route path="/main" component={TitleMain} />
-            <Route path="/form" component={UserFormContainer} />
+            <Route path="/form" component={LogInFormContainer} />
             <Route path="/user/:id" component={CurrentUserDataContainer} />
             <Route path="*" component={NoMatch} />
           </Route>

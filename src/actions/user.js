@@ -49,6 +49,13 @@ function setCurrentUser(currentUser) {
   }
 }
 
+function setLoggedInUser(user) {
+  return {
+    type: 'SET_LOGGED_IN_USER',
+    user
+  }
+}
+
 async function requestAllUserData() {
   const response = await $.ajax({
     url: `http://localhost:3000/api/users`,
@@ -71,6 +78,27 @@ async function requestUserData(id) {
   return User.fromJS(response)
 }
 
+async function attemptLogIn(user) {
+  const body = {
+    user: {
+      name:user.name,
+      age:user.age,
+      job:user.job,
+      password:user.password,
+      password_confirmation:user.passwordConfirmation
+    }
+  }
+  const response = await $.ajax({
+    url:`http://localhost:3000/api/users`,
+    method:'POST',
+    data: body,
+    dataType:'json',
+    timeout:10000,
+  })
+  console.log("Got a response from server attempting to login")
+  console.log(response)
+  return response
+}
 
 export function getAllUserData() {
   console.log('getAllUserData called')
@@ -103,5 +131,17 @@ export function clearCurrentUser() {
   return {
     type: 'CLEAR_CURRENT_USER',
     null
+  }
+}
+
+export function logInUser(user) {
+  console.log('recieved create User Action...')
+  return async(dispatch) => {
+    try {
+      const LogIn = await attemptLogIn(user)
+      dispatch(setLoggedInUser(LogIn))
+    } catch(error) {
+      console.log("error", error)
+    }
   }
 }

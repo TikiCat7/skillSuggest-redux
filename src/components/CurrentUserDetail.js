@@ -49,7 +49,8 @@ class CurrentUserDetail extends Component {
 
     const styles = {
       chip: {
-        margin: 4,
+        margin: 10,
+        display: "inline-block"
       },
       wrapper: {
         display: 'flex',
@@ -64,13 +65,13 @@ class CurrentUserDetail extends Component {
     const userSkillsWithVotes = userSkills.map((skill) => {
       const voters = skill.voters.map((voter) => {
         return(
-          <ul key={voter.id}>
+          <li styleName="test" key={voter.id}>
             <Link to={`/user/${voter.id}`}>{voter.name}</Link>
-          </ul>
+          </li>
             )
             })
             return(
-            <div styleName="base">
+            <div styleName="skill">
               <Chip
                 style={styles.chip}
                 key={skill.skillName}
@@ -78,22 +79,26 @@ class CurrentUserDetail extends Component {
                 <Avatar size={32}>{skill.voteCount}</Avatar>
                 {skill.skillName}
               </Chip>
-              {voters}
+              <ul styleName="voters">
+                {voters}
+              </ul>
             </div>
             )
             })
 
         return(
-        <div>
+        <div styleName="container">
           <ul>
             UserID: {currentUserData.id}
             <li>Name: {currentUserData.name}</li>
             <li>Job: {currentUserData.job}</li>
             <li>Age: {currentUserData.age}</li>
           </ul>
-          Assigned Skills:
-          {userSkillsWithVotes}
-          <div>
+          <div styleName="skillsSection">
+            Assigned Skills:
+            {userSkillsWithVotes}
+          </div>
+            <div>
             <RaisedButton
               styleName="backButton"
               containerElement={<Link to="/main" />}

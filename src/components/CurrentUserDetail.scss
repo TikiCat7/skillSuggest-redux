@@ -1,7 +1,41 @@
-.base {
-  background-color: grey;
+.skill {
+  background: white;
+  // display: inline-block;
+  //  position:absolute;
+  //  margin-bottom: 150;
+  //  text-align: right;
+  //  width: 100%
+}
+
+.skillsSection {
+  text-align: justify;
+
+}
+
+.voters {
+  display: inline-block;
+  text-align: justify;
+  float:right;
+  list-style-type: none;
+  padding-right: 300;
+}
+
+.test {
+  display: inline-block;
+  // list-style-type: none;
+  padding-left: 10px
+}
+
+.container {
+  background: white;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10
 }
 
 .backButton {
-  margin-top: 10;
+  margin-top: 60;
 }
