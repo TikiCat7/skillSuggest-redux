@@ -11,26 +11,39 @@ const validate = values => {
     if(!values[field]) {
       errors[field] = 'Required'
     }
+
+    if(values['password']!==null && values['passwordConfirmation']!==null && values['password']!==values['passwordConfirmation']) {
+      errors['password'] = "Password doesn't match"
+      errors['passwordConfirmation'] = "Password doesn't match"
+    }
   })
   return errors
 }
 
 class LogInForm extends React.Component {
+
   render() {
-  const { handleSubmit } = this.props;
+  console.log(this.props)
+  const { handleSubmit, pristine, submitting } = this.props;
   const styles = {
+    form: {
       textAlign: 'center',
       paddingTop: 80
+      },
+    submitButton: {
+      paddingTop: 30
+    }
   }
 
   return (
-    <div style={styles}>
+    <div style={styles.form}>
       <h1>Sign Up!</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <Field name="name"
             component={TextField}
-            floatingLabelText="Your name"/>
+            floatingLabelText="Your name"
+          />
         </div>
         <div>
           <Field name="age"
@@ -54,8 +67,9 @@ class LogInForm extends React.Component {
             floatingLabelText="Enter password again"
             type="password"/>
         </div>
-
-        <RaisedButton label="Submit" type="submit"/>
+        <div style={styles.submitButton}>
+          <RaisedButton label="Submit" disabled={ pristine || submitting } type="submit"/>
+        </div>
       </form>
     </div>
   );
