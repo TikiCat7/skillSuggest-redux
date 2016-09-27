@@ -54,7 +54,6 @@ function allUsers(state = new List(), action) {
 function currentUser(state = new User(), action) {
   switch(action.type) {
     case 'SET_CURRENT_USER':
-      console.log(action.currentUser)
       return action.currentUser
     case 'CLEAR_CURRENT_USER':
       console.log("clear CLEAR_CURRENT_USER action receieved")
@@ -68,7 +67,6 @@ function currentUser(state = new User(), action) {
 function loggedInUser(state = {name: "null", status: false}, action) {
   switch(action.type) {
     case 'SET_LOGGED_IN_USER':
-      console.log(action.user)
       return action.user
     default:
       break

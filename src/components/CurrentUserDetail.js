@@ -88,7 +88,7 @@ class CurrentUserDetail extends Component {
 
         return(
         <div styleName="container">
-          <ul>
+          <ul >
             UserID: {currentUserData.id}
             <li>Name: {currentUserData.name}</li>
             <li>Job: {currentUserData.job}</li>

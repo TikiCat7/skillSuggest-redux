@@ -44,7 +44,7 @@ class Navbar extends Component {
     }
 
   const { loggedInUser } = this.props
-  console.log("logged in as" + loggedInUser)
+  //console.log("logged in as" + loggedInUser)
 
     return(
 

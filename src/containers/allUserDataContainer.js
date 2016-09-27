@@ -21,7 +21,6 @@ class AllUserDataContainer extends Component {
 
   render() {
     const { allUsers } = this.props
-    console.log(allUsers)
     return(
       <AllUserData allUserData={allUsers} />
     )

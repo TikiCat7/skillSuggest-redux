@@ -4,6 +4,17 @@ import { Field, reduxForm } from 'redux-form';
 import { TextField } from 'redux-form-material-ui'; // wrapper because errors
 import RaisedButton from 'material-ui/RaisedButton';
 
+const validate = values => {
+  const errors = {}
+  const requiredFields = [ 'name', 'age', 'job', 'password', 'passwordConfirmation' ]
+  requiredFields.forEach(field => {
+    if(!values[field]) {
+      errors[field] = 'Required'
+    }
+  })
+  return errors
+}
+
 class LogInForm extends React.Component {
   render() {
   const { handleSubmit } = this.props;
@@ -52,7 +63,8 @@ class LogInForm extends React.Component {
 }
 
 LogInForm = reduxForm({
-  form: 'userForm' // a unique name for this form
+  form: 'userForm',
+  validate // a unique name for this form
 })(LogInForm);
 
 export default LogInForm
