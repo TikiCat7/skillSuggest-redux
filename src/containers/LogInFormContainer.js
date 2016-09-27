@@ -10,13 +10,13 @@ class LogInFormContainer extends React.Component {
 
   handleSubmit(values) {
     console.log(values)
-    console.log(this.props.logInUser(values))
+    this.props.logInUser(values)
     // this.props.logInUser(values)
   }
 
   render() {
     return(
-      <LogInForm onSubmit={this.handleSubmit.bind(this)} loggedInUser={this.props.loggedInUser}/>
+      <LogInForm onSubmit={this.handleSubmit.bind(this)}/>
     )
   }
 }

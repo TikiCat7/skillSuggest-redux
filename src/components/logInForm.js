@@ -1,34 +1,50 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form';
+// import TextField from 'material-ui/TextField';  //https://github.com/erikras/redux-form/issues/1249
+import { TextField } from 'redux-form-material-ui'; // wrapper because errors
+import RaisedButton from 'material-ui/RaisedButton';
 
 class LogInForm extends React.Component {
   render() {
-  const { handleSubmit, loggedInUser } = this.props;
+  const { handleSubmit } = this.props;
+  const styles = {
+      textAlign: 'center',
+      paddingTop: 80
+  }
+
   return (
-    <div>
-      <p>Currently Logged in As:{this.props.loggedInUser.name}</p>
+    <div style={styles}>
+      <h1>Sign Up!</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
-          <Field name="name" component="input" type="text"/>
+          <Field name="name"
+            component={TextField}
+            floatingLabelText="Your name"/>
         </div>
         <div>
-          <label htmlFor="age">Age</label>
-          <Field name="age" component="input" type="text"/>
+          <Field name="age"
+            component={TextField}
+            floatingLabelText="Your age"/>
         </div>
         <div>
-          <label htmlFor="job">Job</label>
-          <Field name="job" component="input" type="text"/>
+          <Field name="job"
+            component={TextField}
+            floatingLabelText="Your job"/>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
-          <Field name="password" component="input" type="password"/>
+          <Field name="password"
+            component={TextField}
+            floatingLabelText="Enter password"
+            type="password"/>
         </div>
         <div>
-          <label htmlFor="passwordConfirmation">Password Confirmation</label>
-          <Field name="passwordConfirmation" component="input" type="password"/>
+          <Field name="passwordConfirmation"
+            component={TextField}
+            floatingLabelText="Enter password again"
+            type="password"/>
         </div>
-        <button type="submit">Submit</button>
+
+        <RaisedButton label="Submit" type="submit"/>
       </form>
     </div>
   );

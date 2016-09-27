@@ -29,9 +29,9 @@ class TitleMain extends Component {
 
     return (
       <div>
-        <TodoInputBox onAddTodo={this.onAddTodo.bind(this)}/>
-        <TodoDisplay todos={todos} />
-        <UserDisplay users={userList} onAddUser={this.onAddUser.bind(this)}/>
+        {/*<TodoInputBox onAddTodo={this.onAddTodo.bind(this)}/>
+          <TodoDisplay todos={todos} />
+        <UserDisplay users={userList} onAddUser={this.onAddUser.bind(this)}/>*/}
         <AllUserDataContainer />
       </div>
     )

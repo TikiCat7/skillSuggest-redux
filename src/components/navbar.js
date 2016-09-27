@@ -38,15 +38,22 @@ class Navbar extends Component {
 
     const styles = {
       appBar: {
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'fixed'
       }
     }
 
+  const { loggedInUser } = this.props
+  console.log("logged in as" + loggedInUser)
+
     return(
+
       <div>
         <AppBar
           title="Redux Skill Assign Practice App"
-          iconElementRight={<FlatButton label="About" />}
+          iconElementRight={<FlatButton label={
+            loggedInUser.status == false? "Not Logged In": `Logged in as: ${loggedInUser.name}`
+          } />}
           onLeftIconButtonTouchTap={this.toggleSideBar.bind(this)}
           style={styles.appBar}
         />
@@ -70,4 +77,10 @@ Navbar.contextTypes = {
   router: PropTypes.object.isRequired
 }
 
-export default connect()(Navbar)
+const mapStateToProps = (state, ownProps) => {
+    return {
+      loggedInUser: state.skillApp.loggedInUser
+    }
+}
+
+export default connect(mapStateToProps)(Navbar)

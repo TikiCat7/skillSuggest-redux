@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 class AllUserData extends Component {
+
   render() {
     const { allUserData } = this.props
-    //console.log(allUserData)
+    const styles = {
+        textAlign: 'center',
+        paddingTop: 80
+    }
+
     return(
-      <div>
+      <div style={styles}>
         <div>All the user data from http://localhost:3000/api/users</div>
         {allUserData.map((user)=> {
           return(
