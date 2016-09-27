@@ -140,6 +140,8 @@ export function logInUser(user) {
     try {
       const LogIn = await attemptLogIn(user)
       dispatch(setLoggedInUser(LogIn))
+      // return id for reroute
+      return LogIn.id
     } catch(error) {
       console.log("error", error)
     }

@@ -13,7 +13,7 @@ const validate = values => {
     }
 
     if(values['password']!==null && values['passwordConfirmation']!==null && values['password']!==values['passwordConfirmation']) {
-      errors['password'] = "Password doesn't match"
+      //errors['password'] = "Password doesn't match"
       errors['passwordConfirmation'] = "Password doesn't match"
     }
   })
