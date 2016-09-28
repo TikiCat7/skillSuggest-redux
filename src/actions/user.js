@@ -78,7 +78,7 @@ async function requestUserData(id) {
   return User.fromJS(response)
 }
 
-async function attemptLogIn(user) {
+async function attemptSignUp(user) {
   const body = {
     user: {
       name:user.name,
@@ -134,11 +134,11 @@ export function clearCurrentUser() {
   }
 }
 
-export function logInUser(user) {
+export function signUpUser(user) {
   console.log('recieved create User Action...')
   return async(dispatch) => {
     try {
-      const LogIn = await attemptLogIn(user)
+      const LogIn = await attemptSignUp(user)
       dispatch(setLoggedInUser(LogIn))
       // return id for reroute
       return LogIn.id

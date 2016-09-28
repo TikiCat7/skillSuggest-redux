@@ -1,29 +1,28 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import LogInForm from '../components/logInForm'
 
-import { logInUser } from '../actions/user'
-
-import LogInForm from '../components/LogInForm'
+//import login action
 
 class LogInFormContainer extends React.Component {
 
   handleSubmit(values) {
-    // after user sign up is finished, reroute to that route
-    this.props.logInUser(values).then((id) => {
-      this.context.router.push(`/user/${id}`)
-    })
+    console.log(values)
+    //implement login action
   }
 
   render() {
+    const styles = {
+      form: {
+        textAlign: 'center',
+        paddingTop: 80
+        }
+    }
     return(
       <LogInForm onSubmit={this.handleSubmit.bind(this)}/>
     )
   }
-}
-
-LogInFormContainer.contextTypes = {
-  router: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -34,8 +33,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logInUser
+    //bind login action to props
   }, dispatch)
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(LogInFormContainer)
+export default connect(mapStateToProps)(LogInFormContainer)

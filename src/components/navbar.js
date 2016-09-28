@@ -34,6 +34,12 @@ class Navbar extends Component {
     this.toggleSideBar()
   }
 
+  handleLogInClick() {
+    console.log("login pressed")
+    this.context.router.push('/login')
+    this.toggleSideBar()
+  }
+
   render(){
 
     const styles = {
@@ -65,6 +71,7 @@ class Navbar extends Component {
         >
           <MenuItem onTouchTap={this.handleMainClick.bind(this)}>Browse Users</MenuItem>
           <MenuItem onTouchTap={this.handleSignUpClick.bind(this)}>Sign Up</MenuItem>
+          <MenuItem onTouchTap={this.handleLogInClick.bind(this)}>Log In</MenuItem>
         </Drawer>
         <div>
           { this.props.children }
