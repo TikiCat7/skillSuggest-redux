@@ -95,6 +95,26 @@ async function attemptSignUp(user) {
     dataType:'json',
     timeout:10000,
   })
+  console.log("Got a response from server attempting to create a user")
+  console.log(response)
+  return response
+}
+
+async function attemptLogIn(user) {
+  const body = {
+    user: {
+      name: user.name,
+      password: user.password
+    }
+  }
+  console.log(body)
+  const response = await $.ajax({
+    url: 'http://localhost:3000/login',
+    method: 'POST',
+    data: body,
+    dataType:'json',
+    timeout:10000,
+  })
   console.log("Got a response from server attempting to login")
   console.log(response)
   return response
@@ -142,6 +162,18 @@ export function signUpUser(user) {
       dispatch(setLoggedInUser(LogIn))
       // return id for reroute
       return LogIn.id
+    } catch(error) {
+      console.log("error", error)
+    }
+  }
+}
+
+export function logInUser(user) {
+  console.log('logInUser action fired')
+  return async(dispatch) => {
+    try {
+      const loggedInUser = await attemptLogIn(user)
+      dispatch(setLoggedInUser(loggedInUser))
     } catch(error) {
       console.log("error", error)
     }

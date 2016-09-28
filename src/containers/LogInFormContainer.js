@@ -2,14 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LogInForm from '../components/logInForm'
-
-//import login action
+import { logInUser } from '../actions/user'
 
 class LogInFormContainer extends React.Component {
 
   handleSubmit(values) {
     console.log(values)
-    //implement login action
+    this.props.logInUser(values)
   }
 
   render() {
@@ -33,8 +32,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    //bind login action to props
+    logInUser
   }, dispatch)
 }
 
-export default connect(mapStateToProps)(LogInFormContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(LogInFormContainer)
