@@ -30,7 +30,7 @@ class Navbar extends Component {
 
   handleSignUpClick() {
     console.log("sign up pressed")
-    this.context.router.push('/form')
+    this.context.router.push('/signup')
     this.toggleSideBar()
   }
 

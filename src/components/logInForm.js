@@ -23,7 +23,6 @@ const validate = values => {
 class LogInForm extends React.Component {
 
   render() {
-  console.log(this.props)
   const { handleSubmit, pristine, submitting } = this.props;
   const styles = {
     form: {

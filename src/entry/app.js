@@ -49,7 +49,7 @@ const App = () => (
         <Router history={history}>
           <Route path="/" component={NavBar} >
             <Route path="/main" component={TitleMain} />
-            <Route path="/form" component={LogInFormContainer} />
+            <Route path="/signup" component={LogInFormContainer} />
             <Route path="/user/:id" component={CurrentUserDataContainer} />
             <Route path="*" component={NoMatch} />
           </Route>
