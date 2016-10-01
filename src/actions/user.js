@@ -102,7 +102,7 @@ async function attemptSignUp(user) {
 
 async function attemptLogIn(user) {
   const body = {
-    user: {
+    session: {
       name: user.name,
       password: user.password
     }
@@ -174,6 +174,7 @@ export function logInUser(user) {
     try {
       const loggedInUser = await attemptLogIn(user)
       dispatch(setLoggedInUser(loggedInUser))
+      return loggedInUser.id
     } catch(error) {
       console.log("error", error)
     }
