@@ -154,6 +154,17 @@ export function clearCurrentUser() {
   }
 }
 
+export function logInFail() {
+  console.log("firing logInFail action")
+  const error = {
+    logInError: true
+  }
+  return {
+    type: 'LOGIN_FAILED',
+    error
+  }
+}
+
 export function signUpUser(user) {
   console.log('recieved create User Action...')
   return async(dispatch) => {
@@ -177,6 +188,7 @@ export function logInUser(user) {
       return loggedInUser.id
     } catch(error) {
       console.log("error", error)
+      dispatch(logInFail())
     }
   }
 }

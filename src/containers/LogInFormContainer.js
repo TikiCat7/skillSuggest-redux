@@ -9,7 +9,11 @@ class LogInFormContainer extends React.Component {
   handleSubmit(values) {
     console.log(values)
     this.props.logInUser(values).then((id)=>{
-      this.context.router.push(`user/${id}`)
+      if(id){
+        this.context.router.push(`user/${id}`)
+      } else {
+        console.log('log in failed')
+      }
     })
   }
 
@@ -21,7 +25,7 @@ class LogInFormContainer extends React.Component {
         }
     }
     return(
-      <LogInForm onSubmit={this.handleSubmit.bind(this)}/>
+      <LogInForm onSubmit={this.handleSubmit.bind(this)} displayLogInError = {this.props.notification}/>
     )
   }
 }
@@ -32,7 +36,8 @@ LogInFormContainer.contextTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      loggedInUser: state.skillApp.loggedInUser
+      loggedInUser: state.skillApp.loggedInUser,
+      notification: state.skillApp.notification.logInError
     }
 }
 

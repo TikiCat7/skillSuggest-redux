@@ -74,11 +74,22 @@ function loggedInUser(state = {name: "null", status: false}, action) {
   return state
 }
 
+function notification(state = {logInError: false}, action) {
+  switch(action.type) {
+    case 'LOGIN_FAILED':
+        return action.error
+    default:
+      break
+  }
+  return state
+}
+
 // export combine reducers
 export default combineReducers({
   todos,
   userList,
   allUsers,
   currentUser,
-  loggedInUser
+  loggedInUser,
+  notification
 })

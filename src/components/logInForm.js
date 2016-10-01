@@ -28,9 +28,11 @@ class LogInForm extends React.Component {
     }
   }
 
+  const { displayLogInError } = this.props
   return (
     <div style={styles.form}>
       <h1>Log In</h1>
+      {displayLogInError && <h1>LOG IN ERROR</h1>}
       <form onSubmit={handleSubmit}>
         <div>
           <Field name="name"
