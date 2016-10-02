@@ -8,9 +8,10 @@ class LogInFormContainer extends React.Component {
 
   handleSubmit(values) {
     console.log(values)
-    this.props.logInUser(values).then((id)=>{
-      if(id){
-        this.context.router.push(`user/${id}`)
+    this.props.logInUser(values).then((user)=>{
+      if(user.id && user.token){
+        localStorage.setItem('token', user.token)
+        this.context.router.push(`user/${user.id}`)
       } else {
         console.log('log in failed')
       }

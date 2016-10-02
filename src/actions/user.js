@@ -185,7 +185,7 @@ export function logInUser(user) {
     try {
       const loggedInUser = await attemptLogIn(user)
       dispatch(setLoggedInUser(loggedInUser))
-      return loggedInUser.id
+      return loggedInUser
     } catch(error) {
       console.log("error", error)
       dispatch(logInFail())
