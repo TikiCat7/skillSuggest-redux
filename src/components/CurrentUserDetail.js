@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
-import RaisedButton from 'material-ui/RaisedButton';
-import Chip from 'material-ui/Chip';
-import Avatar from 'material-ui/Avatar';
+import RaisedButton from 'material-ui/RaisedButton'
+import Chip from 'material-ui/Chip'
+import Avatar from 'material-ui/Avatar'
+import Snackbar from 'material-ui/Snackbar'
 
 import CSSModules from 'react-css-modules'
 import styles from './CurrentUserDetail.scss'
@@ -41,9 +42,14 @@ class CurrentUserDetail extends Component {
     return ordered
   }
 
+  handleRequestClose() {
+    this.props.handleLogInMessage()
+
+  }
+
   render() {
     //　console.log(this.context)
-    const { currentUserData } = this.props
+    const { currentUserData, logInInfo, disableLogInMessage } = this.props
     const userSkills = this.calculateSkillsVotes(currentUserData)
     //console.log(userSkills)
 
@@ -98,20 +104,21 @@ class CurrentUserDetail extends Component {
             Assigned Skills:
             {userSkillsWithVotes}
           </div>
-            <div>
+          <div>
             <RaisedButton
               styleName="backButton"
               containerElement={<Link to="/main" />}
               label="back"/>
-            {/*<button onClick={this.props.handleClick.bind(null,3)}> Test </button>*/}
           </div>
+          <Snackbar
+            open={logInInfo.logInInfo}
+            message={`Logged in as ${logInInfo.name}!`}
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose.bind(this)}
+          />
         </div>
         )
       }
     }
-
-  // CurrentUserDetail.contextTypes = {
-  //   router: PropTypes.object.isRequired
-  // }
 
 export default CSSModules(CurrentUserDetail, styles)

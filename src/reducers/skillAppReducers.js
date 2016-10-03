@@ -64,10 +64,13 @@ function currentUser(state = new User(), action) {
   return state
 }
 
-function loggedInUser(state = {name: "null", status: false}, action) {
+function loggedInUser(state = {name: "null", loggedIn: false, logInInfo:false}, action) {
   switch(action.type) {
     case 'SET_LOGGED_IN_USER':
-      return action.user
+      state = {...action.user, logInInfo:true} // is this bad?
+      return state
+    case 'DISABLE_LOGIN_MESSAGE':
+      return {...state, logInInfo:false} // REMEMBER, DON'T MUTATE STATE!!! logInStatus
     default:
       break
   }
@@ -77,7 +80,7 @@ function loggedInUser(state = {name: "null", status: false}, action) {
 function notification(state = {logInError: false}, action) {
   switch(action.type) {
     case 'LOGIN_FAILED':
-        return action.error
+        return {...state, logInError:true}
     default:
       break
   }

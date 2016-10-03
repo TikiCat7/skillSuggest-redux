@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LogInForm from '../components/logInForm'
-import { logInUser } from '../actions/user'
+
+import { logInUser, logInFail } from '../actions/user'
 
 class LogInFormContainer extends React.Component {
 
@@ -26,7 +27,7 @@ class LogInFormContainer extends React.Component {
         }
     }
     return(
-      <LogInForm onSubmit={this.handleSubmit.bind(this)} displayLogInError = {this.props.notification}/>
+      <LogInForm onSubmit={this.handleSubmit.bind(this)} displayLogInError = {this.props.notification} />
     )
   }
 }

@@ -50,7 +50,6 @@ class Navbar extends Component {
     }
 
   const { loggedInUser } = this.props
-  //console.log("logged in as" + loggedInUser)
 
     return(
 
@@ -58,7 +57,7 @@ class Navbar extends Component {
         <AppBar
           title="Redux Skill Assign Practice App"
           iconElementRight={<FlatButton label={
-            loggedInUser.status == false? "Not Logged In": `Logged in as: ${loggedInUser.name}`
+            loggedInUser.loggedIn == false? "Not Logged In": `Logged in as: ${loggedInUser.name}`
           } />}
           onLeftIconButtonTouchTap={this.toggleSideBar.bind(this)}
           style={styles.appBar}

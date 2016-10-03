@@ -156,12 +156,17 @@ export function clearCurrentUser() {
 
 export function logInFail() {
   console.log("firing logInFail action")
-  const error = {
-    logInError: true
-  }
   return {
     type: 'LOGIN_FAILED',
-    error
+    null
+  }
+}
+
+export function disableLogInMessage() {
+  console.log("disableLogInMessage action called")
+  return {
+    type: 'DISABLE_LOGIN_MESSAGE',
+    null
   }
 }
 
@@ -189,6 +194,11 @@ export function logInUser(user) {
     } catch(error) {
       console.log("error", error)
       dispatch(logInFail())
+      const user = {
+        id: null,
+        token: null
+      }
+      return user
     }
   }
 }

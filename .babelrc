@@ -14,5 +14,6 @@
         ],
       }],
     }],
+    "transform-object-rest-spread"
   ]
 }

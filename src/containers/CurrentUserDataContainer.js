@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 //import actions, components
-import { getCurrentUser } from '../actions/user'
-import { clearCurrentUser } from '../actions/user'
+import { getCurrentUser, clearCurrentUser, disableLogInMessage } from '../actions/user'
 import CurrentUserDetail from '../components/CurrentUserDetail'
 
 class CurrentUserDataContainer extends React.Component {
@@ -24,13 +23,14 @@ class CurrentUserDataContainer extends React.Component {
     this.props.clearCurrentUser()
   }
 
-  handleClick(id) {
-    // this.context.router.push(`/user/${id}`)
+  handleLogInMessage() {
+    console.log("disable the login message")
+    this.props.disableLogInMessage()
   }
 
   // Fix for nested route issue, seems like a bad idea though
   componentWillReceiveProps(nextProps){
-    //console.log(nextProps)
+    console.log(nextProps)
     if(nextProps.params.id !== this.props.params.id) {
       console.log('Dispatching getCurrentUser manually as work around')
       const {dispatch, params} = nextProps;
@@ -40,7 +40,7 @@ class CurrentUserDataContainer extends React.Component {
 
   render() {
     return(
-      <CurrentUserDetail handleClick={this.handleClick.bind(this)} currentUserData={this.props.currentUser} />
+      <CurrentUserDetail currentUserData={this.props.currentUser} logInInfo={this.props.loggedInUser} handleLogInMessage={this.handleLogInMessage.bind(this)}/>
     )
   }
 }
@@ -51,14 +51,16 @@ CurrentUserDataContainer.contextTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentUser: state.skillApp.currentUser
+    currentUser: state.skillApp.currentUser,
+    loggedInUser: state.skillApp.loggedInUser
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getCurrentUser,
-    clearCurrentUser
+    clearCurrentUser,
+    disableLogInMessage
   }, dispatch)
 }
 
