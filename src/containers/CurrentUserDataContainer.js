@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 //import actions, components
-import { getCurrentUser, clearCurrentUser, disableLogInMessage } from '../actions/user'
+import { getCurrentUser, clearCurrentUser, disableLogInMessage, postNewSkill } from '../actions/user'
 import CurrentUserDetail from '../components/CurrentUserDetail'
 
 class CurrentUserDataContainer extends React.Component {
@@ -38,9 +38,28 @@ class CurrentUserDataContainer extends React.Component {
     }
   }
 
+  handleSubmit(values) {
+    console.log("things we have access to")
+    console.log(values)
+    console.log(this.props.currentUser)
+
+    const postParams = {
+      name: values.skill,
+      assignee_id: this.props.loggedInUser.id,
+      assignee_name: this.props.loggedInUser.name,
+      user_id: this.props.currentUser.id
+    }
+    console.log(postParams)
+    this.props.postNewSkill(postParams)
+  }
+
   render() {
     return(
-      <CurrentUserDetail currentUserData={this.props.currentUser} logInInfo={this.props.loggedInUser} handleLogInMessage={this.handleLogInMessage.bind(this)}/>
+      <CurrentUserDetail currentUserData={this.props.currentUser}
+        logInInfo={this.props.loggedInUser}
+        handleLogInMessage={this.handleLogInMessage.bind(this)}
+        onSubmit={this.handleSubmit.bind(this)}
+      />
     )
   }
 }
@@ -60,7 +79,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getCurrentUser,
     clearCurrentUser,
-    disableLogInMessage
+    disableLogInMessage,
+    postNewSkill
   }, dispatch)
 }
 

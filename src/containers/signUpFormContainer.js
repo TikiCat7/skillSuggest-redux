@@ -11,8 +11,9 @@ class SignUpFormContainer extends React.Component {
 
   handleSubmit(values) {
     // after user sign up is finished, reroute to that route
-    this.props.signUpUser(values).then((id) => {
-      this.context.router.push(`/user/${id}`)
+    this.props.signUpUser(values).then((result) => {
+      localStorage.setItem('token', result.token)
+      this.context.router.push(`/user/${result.id}`)
     })
   }
 

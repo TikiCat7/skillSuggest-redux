@@ -120,6 +120,25 @@ async function attemptLogIn(user) {
   return response
 }
 
+async function attemptPostingNewSkill(params) {
+  console.log('attemptPostingNewSkill called')
+  console.log(params)
+  const response = await $.ajax({
+    url: `http://localhost:3000/api/users/${params.user_id}/skills`,
+    method: 'POST',
+    headers: {
+      'Authorization': localStorage.getItem('token'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: params,
+    dataType: 'json',
+    timeout: 10000,
+  })
+  console.log("got a response from server attempting to post new skill")
+  console.log(response)
+  return response
+}
+
 export function getAllUserData() {
   console.log('getAllUserData called')
   return async(dispatch) => {
@@ -177,7 +196,7 @@ export function signUpUser(user) {
       const LogIn = await attemptSignUp(user)
       dispatch(setLoggedInUser(LogIn))
       // return id for reroute
-      return LogIn.id
+      return LogIn
     } catch(error) {
       console.log("error", error)
     }
@@ -200,5 +219,20 @@ export function logInUser(user) {
       }
       return user
     }
+  }
+}
+
+export function postNewSkill(skill) {
+  console.log('postNewSkill acction fired')
+  return async(dispatch) => {
+    try {
+      console.log("in here")
+      const updatedSkills = await attemptPostingNewSkill(skill)
+      console.log(updatedSkills)
+      dispatch(getCurrentUser(skill.user_id))
+    } catch(error) {
+      console.log("error", error)
+    }
+    return skill
   }
 }

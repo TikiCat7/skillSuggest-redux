@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
+import SkillPostBox from '../components/skillPostBox'
+
 import RaisedButton from 'material-ui/RaisedButton'
 import Chip from 'material-ui/Chip'
 import Avatar from 'material-ui/Avatar'
@@ -104,6 +106,7 @@ class CurrentUserDetail extends Component {
             Assigned Skills:
             {userSkillsWithVotes}
           </div>
+          <SkillPostBox onSubmit={this.props.onSubmit}/>
           <div>
             <RaisedButton
               styleName="backButton"
