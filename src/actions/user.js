@@ -226,7 +226,6 @@ export function postNewSkill(skill) {
   console.log('postNewSkill acction fired')
   return async(dispatch) => {
     try {
-      console.log("in here")
       const updatedSkills = await attemptPostingNewSkill(skill)
       console.log(updatedSkills)
       dispatch(getCurrentUser(skill.user_id))

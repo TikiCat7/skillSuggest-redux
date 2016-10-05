@@ -67,10 +67,12 @@ function currentUser(state = new User(), action) {
 function loggedInUser(state = {name: "null", loggedIn: false, logInInfo:false}, action) {
   switch(action.type) {
     case 'SET_LOGGED_IN_USER':
-      state = {...action.user, logInInfo:true} // is this bad?
+      state = {...action.user, loggedIn:true, logInInfo:true} // is this bad?
       return state
     case 'DISABLE_LOGIN_MESSAGE':
       return {...state, logInInfo:false} // REMEMBER, DON'T MUTATE STATE!!! logInStatus
+    case 'JWT_EXISTS':
+      return {...state, loggedIn:true, name:action.data.name, id:action.data.id} // set loggedIn State to true if jwt exists
     default:
       break
   }

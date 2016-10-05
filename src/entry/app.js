@@ -12,6 +12,7 @@ import _ from 'lodash'
 import 'babel-polyfill'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import jwt from 'jwt-simple'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -32,6 +33,14 @@ import configureStore from '../stores/configureAppStore'
 // create store for the app
 const store = configureStore()
 
+// check for authentication first
+const token = localStorage.getItem('token')
+if (token) {
+  const decoded = jwt.decode(token, null, true)
+  console.log(decoded)
+  // dispatch action if jwt already exists
+  store.dispatch({type:'JWT_EXISTS', data:decoded.data})
+}
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
 
