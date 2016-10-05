@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { logOutUser } from '../actions/user'
 
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
@@ -40,6 +43,14 @@ class Navbar extends Component {
     this.toggleSideBar()
   }
 
+  handleSignOutClick() {
+    console.log("signout pressed")
+    localStorage.removeItem('token')
+    this.props.logOutUser()
+    this.context.router.push('/main')
+    this.toggleSideBar()
+  }
+
   render(){
 
     const styles = {
@@ -71,6 +82,7 @@ class Navbar extends Component {
           <MenuItem onTouchTap={this.handleMainClick.bind(this)}>Browse Users</MenuItem>
           <MenuItem onTouchTap={this.handleSignUpClick.bind(this)}>Sign Up</MenuItem>
           <MenuItem onTouchTap={this.handleLogInClick.bind(this)}>Log In</MenuItem>
+          {loggedInStatus.loggedIn == true? <MenuItem onTouchTap={this.handleSignOutClick.bind(this)}>Sign Out</MenuItem>: null}
         </Drawer>
         <div>
           { this.props.children }
@@ -89,4 +101,11 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(Navbar)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    // call action to update loggedIn state
+    logOutUser
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

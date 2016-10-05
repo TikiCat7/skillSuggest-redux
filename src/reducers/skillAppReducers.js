@@ -73,6 +73,8 @@ function loggedInUser(state = {name: "null", loggedIn: false, logInInfo:false}, 
       return {...state, logInInfo:false} // REMEMBER, DON'T MUTATE STATE!!! logInStatus
     case 'JWT_EXISTS':
       return {...state, loggedIn:true, name:action.data.name, id:action.data.id} // set loggedIn State to true if jwt exists
+    case 'LOG_OUT_USER':
+      return {...state, loggedIn:false}
     default:
       break
   }

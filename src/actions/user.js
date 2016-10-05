@@ -189,6 +189,14 @@ export function disableLogInMessage() {
   }
 }
 
+export function logOutUser() {
+  console.log("logOutUser action called")
+  return {
+    type: 'LOG_OUT_USER',
+    null
+  }
+}
+
 export function signUpUser(user) {
   console.log('recieved create User Action...')
   return async(dispatch) => {
