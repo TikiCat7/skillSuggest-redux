@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 //import actions, components
-import { getCurrentUser, clearCurrentUser, disableLogInMessage, postNewSkill } from '../actions/user'
+import { getCurrentUser, clearCurrentUser, disableLogInMessage, postNewSkill, logInFail, handleCancel } from '../actions/user'
 import CurrentUserDetail from '../components/CurrentUserDetail'
 
 class CurrentUserDataContainer extends React.Component {
-
   // when component mounts, dispatch getCurrentUser action
   componentDidMount() {
     // console.log("currentUserContainer Mounted")
@@ -26,6 +25,14 @@ class CurrentUserDataContainer extends React.Component {
   handleLogInMessage() {
     console.log("disable the login message")
     this.props.disableLogInMessage()
+  }
+
+  handleLogIn() {
+    this.context.router.push('/login')
+  }
+
+  handleCancel() {
+    this.props.handleCancel()
   }
 
   // Fix for nested route issue, seems like a bad idea though
@@ -50,8 +57,13 @@ class CurrentUserDataContainer extends React.Component {
       user_id: this.props.currentUser.id
     }
     console.log(postParams)
-    this.props.postNewSkill(postParams)
-  }
+    this.props.postNewSkill(postParams).then((response) => {
+      if(response.redirectToLogIn != null) {
+        console.log("in login fail")
+        this.props.logInFail()
+      }
+  })
+}
 
   render() {
     return(
@@ -59,6 +71,9 @@ class CurrentUserDataContainer extends React.Component {
         logInInfo={this.props.loggedInUser}
         handleLogInMessage={this.handleLogInMessage.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
+        showAuthError={this.props.notification.logInError}
+        handleLogIn={this.handleLogIn.bind(this)}
+        handleCancel={this.handleCancel.bind(this)}
       />
     )
   }
@@ -71,7 +86,8 @@ CurrentUserDataContainer.contextTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.skillApp.currentUser,
-    loggedInUser: state.skillApp.loggedInUser
+    loggedInUser: state.skillApp.loggedInUser,
+    notification: state.skillApp.notification
   }
 }
 
@@ -80,7 +96,9 @@ const mapDispatchToProps = (dispatch) => {
     getCurrentUser,
     clearCurrentUser,
     disableLogInMessage,
-    postNewSkill
+    postNewSkill,
+    logInFail,
+    handleCancel
   }, dispatch)
 }
 

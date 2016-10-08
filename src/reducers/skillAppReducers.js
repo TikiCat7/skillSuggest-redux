@@ -84,7 +84,11 @@ function loggedInUser(state = {name: "null", loggedIn: false, logInInfo:false}, 
 function notification(state = {logInError: false}, action) {
   switch(action.type) {
     case 'LOGIN_FAILED':
-        return {...state, logInError:true}
+      return {...state, logInError:true}
+    case 'LOGIN_SUCCESS':
+      return {...state, logInError:false}
+    case 'REMOVE_LOGINERROR':
+      return {...state, logInError:false}
     default:
       break
   }

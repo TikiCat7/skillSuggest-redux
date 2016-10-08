@@ -197,6 +197,21 @@ export function logOutUser() {
   }
 }
 
+export function resetErrorMessage() {
+  console.log("resetErrorMessage action called")
+  return {
+    type: 'LOGIN_SUCCESS',
+    null
+  }
+}
+
+export function handleCancel() {
+  console.log("handleCancel action called")
+  return {
+    type: 'REMOVE_LOGINERROR'
+  }
+}
+
 export function signUpUser(user) {
   console.log('recieved create User Action...')
   return async(dispatch) => {
@@ -217,6 +232,7 @@ export function logInUser(user) {
     try {
       const loggedInUser = await attemptLogIn(user)
       dispatch(setLoggedInUser(loggedInUser))
+      dispatch({type:'LOGIN_SUCCESS'})
       return loggedInUser
     } catch(error) {
       console.log("error", error)
@@ -236,9 +252,15 @@ export function postNewSkill(skill) {
     try {
       const updatedSkills = await attemptPostingNewSkill(skill)
       console.log(updatedSkills)
-      dispatch(getCurrentUser(skill.user_id))
+      if(updatedSkills.redirectToLogIn) {
+        return updatedSkills
+      } else {
+        dispatch(getCurrentUser(skill.user_id))
+      }
+
     } catch(error) {
       console.log("error", error)
+      return error
     }
     return skill
   }

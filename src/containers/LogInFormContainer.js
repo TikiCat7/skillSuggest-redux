@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LogInForm from '../components/logInForm'
 
-import { logInUser, logInFail } from '../actions/user'
+import { logInUser, resetErrorMessage } from '../actions/user'
 
 class LogInFormContainer extends React.Component {
+
+  componentDidMount() {
+    this.props.resetErrorMessage()
+  }
 
   handleSubmit(values) {
     console.log(values)
@@ -45,7 +49,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logInUser
+    logInUser,
+    resetErrorMessage
   }, dispatch)
 }
 
