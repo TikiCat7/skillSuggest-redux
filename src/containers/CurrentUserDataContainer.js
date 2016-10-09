@@ -60,6 +60,7 @@ class CurrentUserDataContainer extends React.Component {
     this.props.postNewSkill(postParams).then((response) => {
       if(response.redirectToLogIn != null) {
         console.log("in login fail")
+        localStorage.removeItem('token')
         this.props.logInFail()
       }
   })

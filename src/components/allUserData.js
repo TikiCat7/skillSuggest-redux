@@ -12,7 +12,7 @@ class AllUserData extends Component {
 
     return(
       <div style={styles}>
-        <div>All the user data from http://localhost:3000/api/users</div>
+        <div>All the user data from https://skill-suggest-api.herokuapp.com/api/users/</div>
         {allUserData.map((user)=> {
           return(
             <ul key={user.id}>

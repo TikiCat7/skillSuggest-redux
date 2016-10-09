@@ -58,7 +58,7 @@ function setLoggedInUser(user) {
 
 async function requestAllUserData() {
   const response = await $.ajax({
-    url: `http://localhost:3000/api/users`,
+    url: `https://skill-suggest-api.herokuapp.com/api/users`,
     method: 'GET',
     dataType: 'json',
     timeout: 100000,
@@ -68,7 +68,7 @@ async function requestAllUserData() {
 
 async function requestUserData(id) {
   const response = await $.ajax({
-    url: `http://localhost:3000/api/users/${id}`,
+    url: `https://skill-suggest-api.herokuapp.com/api/users/${id}`,
     method: 'GET',
     dataType: 'json',
     timeout: 100000,
@@ -89,7 +89,7 @@ async function attemptSignUp(user) {
     }
   }
   const response = await $.ajax({
-    url:`http://localhost:3000/api/users`,
+    url:`https://skill-suggest-api.herokuapp.com/api/users`,
     method:'POST',
     data: body,
     dataType:'json',
@@ -109,7 +109,7 @@ async function attemptLogIn(user) {
   }
   console.log(body)
   const response = await $.ajax({
-    url: 'http://localhost:3000/login',
+    url: 'https://skill-suggest-api.herokuapp.com/login',
     method: 'POST',
     data: body,
     dataType:'json',
@@ -124,7 +124,7 @@ async function attemptPostingNewSkill(params) {
   console.log('attemptPostingNewSkill called')
   console.log(params)
   const response = await $.ajax({
-    url: `http://localhost:3000/api/users/${params.user_id}/skills`,
+    url: `https://skill-suggest-api.herokuapp.com/api/users/${params.user_id}/skills`,
     method: 'POST',
     headers: {
       'Authorization': localStorage.getItem('token'),
