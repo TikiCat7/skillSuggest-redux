@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
 import CSSModules from 'react-css-modules'
-import styles from './TodoInputBox.scss'
 
 class TodoInputBox extends Component {
 
@@ -39,4 +38,4 @@ TodoInputBox.propTypes = {
   onAddTodo: PropTypes.func.isRequired
 }
 
-export default CSSModules(TodoInputBox, styles)
+export default TodoInputBox
