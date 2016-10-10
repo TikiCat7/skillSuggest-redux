@@ -6,7 +6,7 @@ const root = path.join(__dirname, 'public')
 
 app.use('/', express.static(root))
 
-app.get('/', (req, res, _next) => {
+app.get('*', (req, res, _next) => {
   res.sendFile('index.html', { root })
 })
 
