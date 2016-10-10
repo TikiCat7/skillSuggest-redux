@@ -2,7 +2,7 @@ import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-export const serverPort = 8080
+export const serverPort = process.env.PORT || 8080
 export const serverURI = `http://localhost:${serverPort}`
 
 export default {

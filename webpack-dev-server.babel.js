@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import express from 'express'
 import _ from 'lodash'
-import config, { serverPort, serverURI } from './webpack.config.babel.js'
+import config, { serverPort, serverURI } from './webpack.config.dev.babel.js'
 
 config.plugins.unshift(
   new webpack.HotModuleReplacementPlugin(),

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "serve": "NODE_ENV=development babel-node server.babel.js",
-    "webpack:serve": "NODE_ENV=development babel-node webpack-dev-server.babel.js"
+    "webpack:serve": "NODE_ENV=development babel-node webpack-dev-server.babel.js",
+    "postinstall": "webpack -p --config webpack.config.prod.babel.js --progress --colors",
+    "start": "NODE_ENV=production babel-node server.babel.js"
   },
   "author": "Wataru Kay",
   "license": "ISC",
