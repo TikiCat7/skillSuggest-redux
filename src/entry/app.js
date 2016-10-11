@@ -49,8 +49,13 @@ const history = syncHistoryWithStore(browserHistory, store)
 // Router component with history prop -> figure out what the history prop is
 
 // wrap with MuiThemeProvider to use material-ui library
+
+const styles = {
+    textAlign: 'center',
+    paddingTop: 80
+}
 const NoMatch = () => (
-  <div>404</div>
+  <div style={styles}>404 route not set in react-router</div>
 );
 
 const App = () => (
@@ -58,6 +63,7 @@ const App = () => (
       <Provider store={store}>
         <Router history={history}>
           <Route path="/" component={NavBar} >
+            <IndexRoute component={TitleMain}/>
             <Route path="/main" component={TitleMain} />
             <Route path="/signup" component={SignUpFormContainer} />
             <Route path="/login" component={LogInFormContainer} />

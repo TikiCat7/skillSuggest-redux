@@ -6,7 +6,7 @@ class LoadingIndicator extends React.Component {
     return(
       <div>
         <h1>Loading...</h1>
-        <CircularProgress size={2} thickness={7}
+        <CircularProgress size={2}
         />
       </div>
     )
