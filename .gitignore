@@ -1,3 +1,4 @@
 node_modules
 notes.txt
 /public/bundle.js
+/public/index.html
