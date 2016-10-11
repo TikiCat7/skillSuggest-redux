@@ -22,7 +22,9 @@ class AllUserDataContainer extends Component {
   render() {
     const { allUsers } = this.props
     return(
-      <AllUserData allUserData={allUsers} />
+      <AllUserData allUserData={allUsers} 
+        isFetching={this.props.isFetching}
+      />
     )
   }
 
@@ -30,7 +32,8 @@ class AllUserDataContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allUsers: state.skillApp.allUsers
+    allUsers: state.skillApp.allUsers,
+    isFetching: state.skillApp.isFetching
   }
 }
 

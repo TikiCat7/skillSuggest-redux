@@ -97,6 +97,16 @@ function notification(state = {logInError: false}, action) {
   return state
 }
 
+function isFetching(state = false, action) {
+  switch(action.type) {
+    case 'FETCH_STATE_UPDATE':
+      return action.fetchState
+    default:
+      break
+  }
+  return state
+}
+
 // export combine reducers
 export default combineReducers({
   todos,
@@ -104,5 +114,6 @@ export default combineReducers({
   allUsers,
   currentUser,
   loggedInUser,
-  notification
+  notification,
+  isFetching
 })

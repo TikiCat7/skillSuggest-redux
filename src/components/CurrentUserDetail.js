@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
 import SkillPostBox from '../components/skillPostBox'
+import LoadingIndicator from '../components/loadIndicator'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import Chip from 'material-ui/Chip'
@@ -51,7 +52,7 @@ class CurrentUserDetail extends Component {
 
   render() {
     //　console.log(this.context)
-    const { currentUserData, logInInfo, disableLogInMessage } = this.props
+    const { currentUserData, logInInfo, disableLogInMessage, isFetching } = this.props
     const userSkills = this.calculateSkillsVotes(currentUserData)
     //console.log(userSkills)
 
@@ -95,34 +96,36 @@ class CurrentUserDetail extends Component {
             })
 
         return(
-        <div styleName="container">
-          <ul >
-            UserID: {currentUserData.id}
-            <li>Name: {currentUserData.name}</li>
-            <li>Job: {currentUserData.job}</li>
-            <li>Age: {currentUserData.age}</li>
-          </ul>
-          <div styleName="skillsSection">
-            Assigned Skills:
-            {userSkillsWithVotes}
+          <div styleName="container"> {isFetching? <LoadingIndicator /> :
+            <div>
+              <ul >
+                UserID: {currentUserData.id}
+                <li>Name: {currentUserData.name}</li>
+                <li>Job: {currentUserData.job}</li>
+                <li>Age: {currentUserData.age}</li>
+              </ul>
+              <div styleName="skillsSection">
+                Assigned Skills:
+                {userSkillsWithVotes}
+              </div>
+              <SkillPostBox onSubmit={this.props.onSubmit}
+                showAuthError={this.props.showAuthError}
+                handleLogIn={this.props.handleLogIn}
+                handleCancel={this.props.handleCancel}/>
+              <div>
+                <RaisedButton
+                  styleName="backButton"
+                  containerElement={<Link to="/main" />}
+                  label="back"/>
+              </div>
+              <Snackbar
+                open={logInInfo.logInInfo}
+                message={`Logged in as ${logInInfo.name}!`}
+                autoHideDuration={4000}
+                onRequestClose={this.handleRequestClose.bind(this)}
+              />
+            </div>}
           </div>
-          <SkillPostBox onSubmit={this.props.onSubmit}
-            showAuthError={this.props.showAuthError}
-            handleLogIn={this.props.handleLogIn}
-            handleCancel={this.props.handleCancel}/>
-          <div>
-            <RaisedButton
-              styleName="backButton"
-              containerElement={<Link to="/main" />}
-              label="back"/>
-          </div>
-          <Snackbar
-            open={logInInfo.logInInfo}
-            message={`Logged in as ${logInInfo.name}!`}
-            autoHideDuration={4000}
-            onRequestClose={this.handleRequestClose.bind(this)}
-          />
-        </div>
         )
       }
     }

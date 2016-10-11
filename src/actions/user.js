@@ -56,6 +56,13 @@ function setLoggedInUser(user) {
   }
 }
 
+function setLoading(fetchState) {
+  return {
+    type: 'FETCH_STATE_UPDATE',
+    fetchState
+  }
+}
+
 async function requestAllUserData() {
   const response = await $.ajax({
     url: `https://skill-suggest-api.herokuapp.com/api/users`,
@@ -142,26 +149,28 @@ async function attemptPostingNewSkill(params) {
 export function getAllUserData() {
   console.log('getAllUserData called')
   return async(dispatch) => {
-    // dispatch(setLoading(true)) // toggle loader
+     dispatch(setLoading(true)) // toggle loader
     try {
       const allUserData = await requestAllUserData()
       dispatch(setAllUserData(allUserData))
     } catch(error) {
       console.log("error", error)
     }
-    //dispatch(setLoading(false)) // toggle loader
+      dispatch(setLoading(false)) // toggle loader
   }
 }
 
 export function getCurrentUser(id) {
   console.log('get UserData action called')
   return async(dispatch) => {
+      dispatch(setLoading(true)) // toggle loader
     try {
       const UserData = await requestUserData(id)
       dispatch(setCurrentUser(UserData))
     } catch(error) {
       console.log("error", error)
     }
+      dispatch(setLoading(false)) // toggle loader
   }
 }
 

@@ -75,6 +75,7 @@ class CurrentUserDataContainer extends React.Component {
         showAuthError={this.props.notification.logInError}
         handleLogIn={this.handleLogIn.bind(this)}
         handleCancel={this.handleCancel.bind(this)}
+        isFetching={this.props.isFetching}
       />
     )
   }
@@ -88,7 +89,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.skillApp.currentUser,
     loggedInUser: state.skillApp.loggedInUser,
-    notification: state.skillApp.notification
+    notification: state.skillApp.notification,
+    isFetching: state.skillApp.isFetching
   }
 }
 
