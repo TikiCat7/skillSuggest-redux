@@ -27,7 +27,7 @@ class Navbar extends Component {
 
   handleMainClick() {
     console.log("menu item1 pressed")
-    this.context.router.push('/main')
+    this.context.router.push('/')
     this.toggleSideBar()
   }
 
@@ -47,7 +47,7 @@ class Navbar extends Component {
     console.log("signout pressed")
     localStorage.removeItem('token')
     this.props.logOutUser()
-    this.context.router.push('/main')
+    this.context.router.push('/')
     this.toggleSideBar()
   }
 

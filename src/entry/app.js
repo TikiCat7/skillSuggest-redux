@@ -64,7 +64,6 @@ const App = () => (
         <Router history={history}>
           <Route path="/" component={NavBar} >
             <IndexRoute component={TitleMain}/>
-            <Route path="/main" component={TitleMain} />
             <Route path="/signup" component={SignUpFormContainer} />
             <Route path="/login" component={LogInFormContainer} />
             <Route path="/user/:id" component={CurrentUserDataContainer} />

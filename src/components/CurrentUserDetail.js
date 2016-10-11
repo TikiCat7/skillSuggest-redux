@@ -115,7 +115,7 @@ class CurrentUserDetail extends Component {
               <div>
                 <RaisedButton
                   styleName="backButton"
-                  containerElement={<Link to="/main" />}
+                  containerElement={<Link to="/" />}
                   label="back"/>
               </div>
               <Snackbar
