@@ -68,7 +68,7 @@ class Navbar extends Component {
         <AppBar
           title="Redux Skill Assign Practice App"
           iconElementRight={<FlatButton label={
-            loggedInStatus.loggedIn == false? "Not Logged In": `Logged in as:${loggedInStatus.name}`
+            loggedInStatus.loggedIn == false? "Not Logged In": `Logged in as: ${loggedInStatus.name}`
           } />}
           onLeftIconButtonTouchTap={this.toggleSideBar.bind(this)}
           style={styles.appBar}

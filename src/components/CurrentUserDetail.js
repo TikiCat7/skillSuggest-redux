@@ -106,7 +106,10 @@ class CurrentUserDetail extends Component {
             Assigned Skills:
             {userSkillsWithVotes}
           </div>
-          <SkillPostBox onSubmit={this.props.onSubmit} showAuthError={this.props.showAuthError} handleLogIn={this.props.handleLogIn} handleCancel={this.props.handleCancel}/>
+          <SkillPostBox onSubmit={this.props.onSubmit}
+            showAuthError={this.props.showAuthError}
+            handleLogIn={this.props.handleLogIn}
+            handleCancel={this.props.handleCancel}/>
           <div>
             <RaisedButton
               styleName="backButton"

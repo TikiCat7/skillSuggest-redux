@@ -11,9 +11,9 @@ export default {
   },
 
   output: {
-    path: path.join(__dirname, 'public/js'),
+    path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
-    publicPath: `${serverURI}/assets/build/`,
+    publicPath: `/public`,
   },
 
   resolve: {
