@@ -56,7 +56,12 @@ class Navbar extends Component {
     const styles = {
       appBar: {
         textAlign: 'center',
-        position: 'fixed'
+        position: 'fixed',
+        paddingLeft: 100
+      },
+      iconRight: {
+        width: 160,
+        display: 'block'
       }
     }
 
@@ -66,9 +71,9 @@ class Navbar extends Component {
 
       <div>
         <AppBar
-          title="Redux Skill Assign Practice App"
-          iconElementRight={<FlatButton label={
-            loggedInStatus.loggedIn == false? "Not Logged In": `Logged in as: ${loggedInStatus.name}`
+          title="Redux Skill Assign App"
+          iconElementRight={<FlatButton style={styles.iconRight} label={
+            loggedInStatus.loggedIn == false? "Not Logged In": `${loggedInStatus.name}`
           } />}
           onLeftIconButtonTouchTap={this.toggleSideBar.bind(this)}
           style={styles.appBar}

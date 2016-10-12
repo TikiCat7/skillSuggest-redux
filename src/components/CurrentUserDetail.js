@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Chip from 'material-ui/Chip'
 import Avatar from 'material-ui/Avatar'
 import Snackbar from 'material-ui/Snackbar'
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 import CSSModules from 'react-css-modules'
 import styles from './CurrentUserDetail.scss'
@@ -98,16 +99,23 @@ class CurrentUserDetail extends Component {
         return(
           <div styleName="container"> {isFetching? <LoadingIndicator /> :
             <div>
-              <ul >
-                UserID: {currentUserData.id}
-                <li>Name: {currentUserData.name}</li>
-                <li>Job: {currentUserData.job}</li>
-                <li>Age: {currentUserData.age}</li>
-              </ul>
-              <div styleName="skillsSection">
-                Assigned Skills:
-                {userSkillsWithVotes}
-              </div>
+              <Card styleName="generalCard">
+                <CardText expandable={false}>
+                  <h2>General Information for: {currentUserData.name}</h2>
+                  <ul styleName="generalInfo">
+                    UserID: {currentUserData.id}
+                    <li styleName="generalInfoLi">Name: {currentUserData.name}</li>
+                    <li styleName="generalInfoLi">Job: {currentUserData.job}</li>
+                    <li styleName="generalInfoLi">Age: {currentUserData.age}</li>
+                  </ul>
+                </CardText>
+              </Card>
+              <Card styleName="skillsCard">
+                <div styleName="skillsSection">
+                  Assigned Skills:
+                  {userSkillsWithVotes}
+                </div>
+              </Card>
               <SkillPostBox onSubmit={this.props.onSubmit}
                 showAuthError={this.props.showAuthError}
                 handleLogIn={this.props.handleLogIn}

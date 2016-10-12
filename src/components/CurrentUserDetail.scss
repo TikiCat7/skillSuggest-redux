@@ -9,7 +9,37 @@
 
 .skillsSection {
   text-align: justify;
+  padding-left: 20px;
+  // display: inline-block;
 
+}
+
+.generalInfo {
+  list-style-type: none;
+  display: inline-block;
+  text-align: left;
+}
+
+.generalInfoLi {
+  padding-top: 5px;
+}
+
+.generalCard {
+  width:600;
+  display: inline-block;
+  padding: 0px;
+}
+
+.skillsCard {
+  width: 800;
+  display:inline-block;
+  margin-top: 30;
+  padding: 10;
+}
+
+.cardHeader {
+  padding-right: 0px;
+  text-align: center;
 }
 
 .voters {
@@ -17,7 +47,7 @@
   text-align: justify;
   float:right;
   list-style-type: none;
-  padding-right: 300;
+  padding-right: 50;
 }
 
 .test {
