@@ -43,9 +43,9 @@ class AllUserData extends Component {
         {isFetching? <LoadingIndicator /> :
           <div>
             <Card style={styles.card}>
-              <span>App Information</span>
-              <h3>App Repo: <span style={styles.gitHubIcon}></span> <a href='https://github.com/WataruKay/skillSuggest-redux'>WataruKay/skillSuggest-redux</a></h3>
-              <h3>Api Server Repo: <span style={styles.gitHubIcon}></span><a href='https://github.com/WataruKay/skillSuggestV2'>WataruKay/skillSuggestV2</a></h3>
+              <h1>Project Details</h1>
+              <h3>App: <span style={styles.gitHubIcon}></span> <a href='https://github.com/WataruKay/skillSuggest-redux'>WataruKay/skillSuggest-redux</a></h3>
+              <h3>Api: <span style={styles.gitHubIcon}></span><a href='https://github.com/WataruKay/skillSuggestV2'>WataruKay/skillSuggestV2</a></h3>
               <h3>Built with:</h3>
               <div style={styles.tools}>
                 <ul style={styles.tools}>
@@ -62,7 +62,8 @@ class AllUserData extends Component {
               </div>
             </Card>
             <Card style={styles.card}>
-              <div>All the user data from https://skill-suggest-api.herokuapp.com/api/users/</div>
+              <h1>Current Members</h1>
+              <div>All the user data from <a href='https://skill-suggest-api.herokuapp.com/api/users/'>skill-suggest-api.herokuapp.com/api/users/</a></div>
               {allUserData.map((user)=> {
                 return(
                   <ul style={styles.users} key={user.id}>

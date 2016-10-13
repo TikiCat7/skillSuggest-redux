@@ -71,7 +71,7 @@ class Navbar extends Component {
 
       <div>
         <AppBar
-          title="Redux Skill Assign App"
+          title="Redux Skill Assign Project"
           iconElementRight={<FlatButton style={styles.iconRight} label={
             loggedInStatus.loggedIn == false? "Not Logged In": `${loggedInStatus.name}`
           } />}
