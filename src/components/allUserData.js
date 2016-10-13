@@ -9,10 +9,12 @@ class AllUserData extends Component {
   render() {
     const { allUserData, isFetching } = this.props
     const styles = {
-        textAlign: 'center',
-        paddingTop: 80,
+          topDiv: {
+            textAlign: 'center',
+            paddingTop: 80,
+        },
         card : {
-          width: 800,
+          width: '60%',
           marginTop: 20,
           display:'inline-block',
           padding: 20,
@@ -29,12 +31,15 @@ class AllUserData extends Component {
         tools: {
           listStyleType:'none',
           display:'inline',
-          padding:0
+          padding:20
+        },
+        users: {
+          paddingLeft: 0
         }
     }
 
     return(
-      <div style={styles}>
+      <div style={styles.topDiv}>
         {isFetching? <LoadingIndicator /> :
           <div>
             <Card style={styles.card}>
@@ -60,7 +65,7 @@ class AllUserData extends Component {
               <div>All the user data from https://skill-suggest-api.herokuapp.com/api/users/</div>
               {allUserData.map((user)=> {
                 return(
-                  <ul key={user.id}>
+                  <ul style={styles.users} key={user.id}>
                     <Link to={`/user/${user.id}`}>{user.name}</Link>
                   </ul>
                 )
