@@ -87,7 +87,7 @@ class CurrentUserDetail extends Component {
                 key={skill.skillName}
               >
                 <Avatar size={32}>{skill.voteCount}</Avatar>
-                {skill.skillName}
+                <Link to={`/skill/${skill.skillName}`}>{skill.skillName}</Link>
               </Chip>
               <ul styleName="voters">
                 {voters}

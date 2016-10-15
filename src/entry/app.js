@@ -23,6 +23,7 @@ import TitleMain from '../containers/titleMain'
 import SignUpFormContainer from '../containers/signUpFormContainer'
 import LogInFormContainer from '../containers/LogInFormContainer'
 import CurrentUserDataContainer from '../containers/CurrentUserDataContainer'
+import CurrentSkillContainer from '../containers/CurrentSkillContainer'
 
 // import navbar component
 import NavBar from '../components/navbar'
@@ -67,6 +68,7 @@ const App = () => (
             <Route path="/signup" component={SignUpFormContainer} />
             <Route path="/login" component={LogInFormContainer} />
             <Route path="/user/:id" component={CurrentUserDataContainer} />
+            <Route path="/skill/:name" component={CurrentSkillContainer} />
             <Route path="*" component={NoMatch} />
           </Route>
           </Router>

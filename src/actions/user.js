@@ -1,5 +1,6 @@
 import User from '../lib/records/User'
 import Skill from '../lib/records/Skill'
+import Skills from '../lib/records/Skills'
 import $ from 'jquery'
 import { Record, List } from 'immutable'
 
@@ -63,6 +64,13 @@ function setLoading(fetchState) {
   }
 }
 
+function setCurrentSkill(SkillData) {
+  return {
+    type: 'SET_CURRENT_SKILL',
+    SkillData
+  }
+}
+
 async function requestAllUserData() {
   const response = await $.ajax({
     url: `https://skill-suggest-api.herokuapp.com/api/users`,
@@ -83,6 +91,19 @@ async function requestUserData(id) {
   console.log("got user data")
   console.log(response)
   return User.fromJS(response)
+}
+
+async function requestSkillData (skillName) {
+  const response = await $.ajax({
+    url: `https://skill-suggest-api.herokuapp.com/api/skills/?name=${skillName}`,
+    method: 'GET',
+    dataType: 'json',
+    timeout: 100000,
+  })
+  console.log("got skill data!!!")
+  console.log(response)
+  console.log(Skills.fromJS(response))
+  return Skills.fromJS(response)
 }
 
 async function attemptSignUp(user) {
@@ -167,6 +188,20 @@ export function getCurrentUser(id) {
     try {
       const UserData = await requestUserData(id)
       dispatch(setCurrentUser(UserData))
+    } catch(error) {
+      console.log("error", error)
+    }
+      dispatch(setLoading(false)) // toggle loader
+  }
+}
+
+export function getCurrentSkill (skillName) {
+  console.log('get currentSkill action called')
+  return async(dispatch) => {
+      dispatch(setLoading(true)) // toggle loader
+    try {
+      const SkillData = await requestSkillData(skillName)
+      dispatch(setCurrentSkill(SkillData))
     } catch(error) {
       console.log("error", error)
     }

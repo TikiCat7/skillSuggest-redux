@@ -4,6 +4,7 @@ import { List } from 'immutable'
 // import our immutable models
 import User from '../lib/records/User'
 import Skill from '../lib/records/Skill'
+import Skills from '../lib/records/Skills'
 
 // import actions for our User model
 import UserActions from '../actions/user'
@@ -64,6 +65,18 @@ function currentUser(state = new User(), action) {
   return state
 }
 
+function currentSkill(state = new Skills(), action) {
+  switch(action.type) {
+    case 'SET_CURRENT_SKILL':
+      return action.SkillData
+    case 'CLEAR_CURRENT_SKILL':
+      return new Skills()
+    default:
+      break
+  }
+  return state
+}
+
 function loggedInUser(state = {name: "null", loggedIn: false, logInInfo:false}, action) {
   switch(action.type) {
     case 'SET_LOGGED_IN_USER':
@@ -115,5 +128,6 @@ export default combineReducers({
   currentUser,
   loggedInUser,
   notification,
-  isFetching
+  isFetching,
+  currentSkill
 })
