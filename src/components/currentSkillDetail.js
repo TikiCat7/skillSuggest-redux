@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 
+//components
+import LoadingIndicator from '../components/loadIndicator'
+
 class CurrentSkillDetail extends React.Component {
     render() {
       const { isFetching, skills } = this.props
@@ -15,14 +18,16 @@ class CurrentSkillDetail extends React.Component {
         }
       }
       return (
-        <div style={styles.topDiv}>
-          <div>Skill Name: {skills.skillName}</div>
-          <div>Skill Count: {skills.count}</div>
-          <ul> Users who have {skills.skillName} assigned to:
-            {mapped}
-          </ul>
-        </div>
-    )
+        <div style={styles.topDiv}> {isFetching? <LoadingIndicator /> :
+          <div>
+            <div>Skill Name: {skills.skillName}</div>
+            <div>Skill Count: {skills.count}</div>
+            <ul> Users who have {skills.assigned_name} assigned to:
+              {mapped}
+            </ul>
+          </div>}
+          </div>
+          )
     }
 }
 export default CurrentSkillDetail

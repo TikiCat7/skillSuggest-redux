@@ -71,6 +71,13 @@ function setCurrentSkill(SkillData) {
   }
 }
 
+export function clearCurrentSkill() {
+  return {
+    type: 'CLEAR_CURRENT_SKILL',
+    null
+  }
+}
+
 async function requestAllUserData() {
   const response = await $.ajax({
     url: `https://skill-suggest-api.herokuapp.com/api/users`,
@@ -89,19 +96,22 @@ async function requestUserData(id) {
     timeout: 100000,
   })
   console.log("got user data")
-  console.log(response)
+  //console.log(response)
   return User.fromJS(response)
 }
 
 async function requestSkillData (skillName) {
+  // return all skills if no specific skill is specified in action
+  const finalUrl = skillName? `https://skill-suggest-api.herokuapp.com/api/skills/?name=${skillName}`
+  : 'https://skill-suggest-api.herokuapp.com/api/skills'
   const response = await $.ajax({
-    url: `https://skill-suggest-api.herokuapp.com/api/skills/?name=${skillName}`,
+    url: finalUrl,
     method: 'GET',
     dataType: 'json',
     timeout: 100000,
   })
   console.log("got skill data!!!")
-  console.log(response)
+  //console.log(response)
   console.log(Skills.fromJS(response))
   return Skills.fromJS(response)
 }
@@ -124,7 +134,7 @@ async function attemptSignUp(user) {
     timeout:10000,
   })
   console.log("Got a response from server attempting to create a user")
-  console.log(response)
+  //console.log(response)
   return response
 }
 
@@ -144,7 +154,7 @@ async function attemptLogIn(user) {
     timeout:10000,
   })
   console.log("Got a response from server attempting to login")
-  console.log(response)
+  //console.log(response)
   return response
 }
 
@@ -163,7 +173,7 @@ async function attemptPostingNewSkill(params) {
     timeout: 10000,
   })
   console.log("got a response from server attempting to post new skill")
-  console.log(response)
+  //console.log(response)
   return response
 }
 

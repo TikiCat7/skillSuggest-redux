@@ -12,30 +12,30 @@ class AllUserData extends Component {
           topDiv: {
             textAlign: 'center',
             paddingTop: 80,
-        },
-        card : {
-          width: '60%',
-          marginTop: 20,
-          display:'inline-block',
-          padding: 20,
-        },
-        skills: {
-          marginTop: 20
-        },
-        gitHubIcon: {
-          background:'url(/GitHub-Mark-32px.png)',
-          height:32,
-          width:32,
-          display:'inline-block'
-        },
-        tools: {
-          listStyleType:'none',
-          display:'inline',
-          padding:20
-        },
-        users: {
-          paddingLeft: 0
-        }
+          },
+          card : {
+            width: '60%',
+            marginTop: 20,
+            display:'inline-block',
+            padding: 20,
+          },
+          skills: {
+            marginTop: 20
+          },
+          gitHubIcon: {
+            background:'url(/GitHub-Mark-32px.png)',
+            height:32,
+            width:32,
+            display:'inline-block'
+          },
+          tools: {
+            listStyleType:'none',
+            display:'inline',
+            padding:20
+          },
+          users: {
+            paddingLeft: 0
+          }
     }
 
     return(

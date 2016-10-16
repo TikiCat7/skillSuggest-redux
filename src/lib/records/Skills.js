@@ -1,6 +1,6 @@
 import { List, Record } from 'immutable'
 
-import Skill from './Skill'
+import SkillWithUser from './SkillWithUser'
 import User from './User'
 
 const _Skills = Record({
@@ -16,7 +16,7 @@ export default class Skills extends _Skills {
     // map over skills array and create List of Skill objects
     if (listOfSkills.length > 0) {
            skills = new List(listOfSkills.map((skill) => {
-            return Skill.fromJS(skill)
+            return SkillWithUser.fromJS(skill)
           }))
       }
 

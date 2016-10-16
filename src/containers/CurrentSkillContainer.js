@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 //actions
-import { getCurrentSkill } from '../actions/user'
+import { getCurrentSkill, clearCurrentSkill } from '../actions/user'
 //components
 import CurrentSkillDetail from '../components/currentSkillDetail'
+import AllSkillDetail from '../components/allSkillDetail'
 
 class CurrentSkillContainer extends React.Component {
 
@@ -18,13 +19,29 @@ class CurrentSkillContainer extends React.Component {
     this.props.getCurrentSkill(this.props.params.name)
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log('next prop param'+nextProps.params.name+' current prop param'+this.props.params.name)
+    if(nextProps.params.name == undefined && this.props.params.name) {
+      console.log('Dispatching getCurrentSkill manually as work around')
+      const {dispatch, params} = nextProps;
+        this.props.getCurrentSkill()
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.clearCurrentSkill()
+  }
+
   render() {
     return(
-      // <currentSkillDetails />
-      <CurrentSkillDetail isFetching={this.props.isFetching}
-        skills={this.props.currentSkill}
-      />
-    )
+      <div>
+        {this.props.params.name == undefined ?
+          <AllSkillDetail isFetching={this.props.isFetching}
+            skills={this.props.currentSkill} />
+              : <CurrentSkillDetail isFetching={this.props.isFetching}
+                skills={this.props.currentSkill} />}
+      </div>
+        )
   }
 }
 
@@ -41,7 +58,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getCurrentSkill
+    getCurrentSkill,
+    clearCurrentSkill
   }, dispatch)
 }
 

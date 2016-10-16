@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 //import actions, components
 import { getCurrentUser, clearCurrentUser, disableLogInMessage, postNewSkill, logInFail, handleCancel } from '../actions/user'
-import CurrentUserDetail from '../components/CurrentUserDetail'
+import CurrentUserDetail from '../components/currentUserDetail'
 
 class CurrentUserDataContainer extends React.Component {
   // when component mounts, dispatch getCurrentUser action

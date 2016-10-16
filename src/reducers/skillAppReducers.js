@@ -16,18 +16,6 @@ function addTodo(todo) {
   }
 }
 
-// reducer (pure function) NOT MADE WITH IMMUTABLEJS
-function todos(state = ['buy eggs','buy milk','pay bills'], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      console.log("ADD TODO action fired")
-      console.log(action.text)
-      return state.concat([ action.text ])
-    default:
-      return state
-  }
-}
-
 function userList(state = new List(), action) {
 //console.log('inside userList reducer')
 //console.log(action)
@@ -122,7 +110,6 @@ function isFetching(state = false, action) {
 
 // export combine reducers
 export default combineReducers({
-  todos,
   userList,
   allUsers,
   currentUser,

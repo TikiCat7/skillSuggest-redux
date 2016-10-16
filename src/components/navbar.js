@@ -26,25 +26,26 @@ class Navbar extends Component {
   }
 
   handleMainClick() {
-    console.log("menu item1 pressed")
     this.context.router.push('/')
     this.toggleSideBar()
   }
 
+  handleSkillsClick() {
+    this.context.router.push('/skill')
+    this.toggleSideBar()
+  }
+
   handleSignUpClick() {
-    console.log("sign up pressed")
     this.context.router.push('/signup')
     this.toggleSideBar()
   }
 
   handleLogInClick() {
-    console.log("login pressed")
     this.context.router.push('/login')
     this.toggleSideBar()
   }
 
   handleSignOutClick() {
-    console.log("signout pressed")
     localStorage.removeItem('token')
     this.props.logOutUser()
     this.context.router.push('/')
@@ -85,6 +86,7 @@ class Navbar extends Component {
           onRequestChange={(open) => this.setState({open})}
         >
           <MenuItem onTouchTap={this.handleMainClick.bind(this)}>Browse Users</MenuItem>
+          <MenuItem onTouchTap={this.handleSkillsClick.bind(this)}>Browse Skills</MenuItem>
           <MenuItem onTouchTap={this.handleSignUpClick.bind(this)}>Sign Up</MenuItem>
           <MenuItem onTouchTap={this.handleLogInClick.bind(this)}>Log In</MenuItem>
           {loggedInStatus.loggedIn == true? <MenuItem onTouchTap={this.handleSignOutClick.bind(this)}>Sign Out</MenuItem>: null}

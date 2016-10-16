@@ -68,10 +68,10 @@ const App = () => (
             <Route path="/signup" component={SignUpFormContainer} />
             <Route path="/login" component={LogInFormContainer} />
             <Route path="/user/:id" component={CurrentUserDataContainer} />
-            <Route path="/skill/:name" component={CurrentSkillContainer} />
+            <Route path="/skill(/:name)" component={CurrentSkillContainer} />
             <Route path="*" component={NoMatch} />
           </Route>
-          </Router>
+        </Router>
       </Provider>
     </MuiThemeProvider>
     )
