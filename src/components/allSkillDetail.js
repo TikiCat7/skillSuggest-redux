@@ -33,6 +33,7 @@ class AllSkillData extends React.Component {
       <div style={styles.topDiv}> {isFetching? <LoadingIndicator />:
         <div>
           <h1>All Skills Assigned</h1>
+          <h2>All skills from <a href='https://skill-suggest-api.herokuapp.com/api/skills'>skill-suggest-api.herokuapp.com/api/skills/</a></h2>
           <ResponsiveContainer width={'90%'} height={'50%'}>
             <BarChart data={result} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
               <XAxis dataKey="name" />

@@ -37,7 +37,6 @@ class CurrentUserDataContainer extends React.Component {
 
   // Fix for nested route issue, seems like a bad idea though
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
     if(nextProps.params.id !== this.props.params.id) {
       console.log('Dispatching getCurrentUser manually as work around')
       const {dispatch, params} = nextProps;

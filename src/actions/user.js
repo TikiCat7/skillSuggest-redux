@@ -112,7 +112,7 @@ async function requestSkillData (skillName) {
   })
   console.log("got skill data!!!")
   //console.log(response)
-  console.log(Skills.fromJS(response))
+  //console.log(Skills.fromJS(response))
   return Skills.fromJS(response)
 }
 
