@@ -99,9 +99,9 @@ class CurrentUserDetail extends Component {
         return(
           <div styleName="container"> {isFetching? <LoadingIndicator /> :
             <div>
+              <h1>User Detail for: {currentUserData.name}</h1>
               <Card styleName="generalCard">
                 <CardText expandable={false}>
-                  <h2>General Information for: {currentUserData.name}</h2>
                   <ul styleName="generalInfo">
                     UserID: {currentUserData.id}
                     <li styleName="generalInfoLi">Name: {currentUserData.name}</li>

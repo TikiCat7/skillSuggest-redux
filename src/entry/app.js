@@ -38,7 +38,6 @@ const store = configureStore()
 const token = localStorage.getItem('token')
 if (token) {
   const decoded = jwt.decode(token, null, true)
-  console.log(decoded)
   // dispatch action if jwt already exists
   store.dispatch({type:'JWT_EXISTS', data:decoded.data})
 }

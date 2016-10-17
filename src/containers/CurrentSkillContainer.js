@@ -20,9 +20,7 @@ class CurrentSkillContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log('next prop param'+nextProps.params.name+' current prop param'+this.props.params.name)
     if(nextProps.params.name == undefined && this.props.params.name) {
-      console.log('Dispatching getCurrentSkill manually as work around')
       const {dispatch, params} = nextProps;
         this.props.getCurrentSkill()
     }

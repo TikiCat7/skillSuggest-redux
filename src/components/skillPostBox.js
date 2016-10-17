@@ -74,12 +74,14 @@ class SkillPostBox extends React.Component {
           </div>
 
           <div style={styles.submitButton}>
-            <RaisedButton label="Add Skill" disabled={ pristine || submitting } type="submit"/>
+            <RaisedButton label="Add Skill"
+              disabled={ pristine || submitting }
+              type="submit"
+            />
           </div>
         </form>
         {this.props.showAuthError && <div>
-          <Dialog
-            title="Oops! something went wrong"
+          <Dialog title="Oops! something went wrong"
             actions={actions}
             modal={false}
             open={this.state.open}

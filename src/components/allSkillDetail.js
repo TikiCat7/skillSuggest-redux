@@ -27,7 +27,7 @@ class AllSkillData extends React.Component {
     const result = _(AllSkillsGraphData.skills)
       .groupBy('name')
       .map((items, name) => ({ name, count: items.length }))
-      .value();
+      .value()
 
     return(
       <div style={styles.topDiv}> {isFetching? <LoadingIndicator />:
