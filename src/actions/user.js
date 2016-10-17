@@ -78,6 +78,13 @@ export function clearCurrentSkill() {
   }
 }
 
+export function showDuplicateSkillError() {
+  return {
+    type: 'SHOW_DUPLICATE_SKILL_ERROR',
+    null
+  }
+}
+
 async function requestAllUserData() {
   const response = await $.ajax({
     url: `https://skill-suggest-api.herokuapp.com/api/users`,
@@ -243,6 +250,14 @@ export function disableLogInMessage() {
   }
 }
 
+export function disableSkillAddSnackBar() {
+  console.log("disableSkillAddSnackBar action called")
+  return {
+    type: 'HIDE_SKILL_ADD_SNACKBAR',
+    null
+  }
+}
+
 export function logOutUser() {
   console.log("logOutUser action called")
   return {
@@ -263,6 +278,21 @@ export function handleCancel() {
   console.log("handleCancel action called")
   return {
     type: 'REMOVE_LOGINERROR'
+  }
+}
+
+export function handleDuplicateErrorCancel() {
+  console.log("handleDuplicateErrorCancel action called")
+  return {
+    type: 'HIDE_DUPLICATE_ERROR'
+  }
+}
+
+export function showSnackBar() {
+  console.log("show snackbar action called")
+  return {
+    type: 'SHOW_SKILL_ADD_SNACKBAR',
+    null
   }
 }
 
@@ -309,11 +339,13 @@ export function postNewSkill(skill) {
       if(updatedSkills.redirectToLogIn) {
         return updatedSkills
       } else {
+        dispatch(showSnackBar())
         dispatch(getCurrentUser(skill.user_id))
       }
 
     } catch(error) {
       console.log("error", error)
+      dispatch(showDuplicateSkillError())
       return error
     }
     return skill

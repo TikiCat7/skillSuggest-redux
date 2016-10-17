@@ -37,7 +37,8 @@ class CurrentSkillContainer extends React.Component {
           <AllSkillDetail isFetching={this.props.isFetching}
             skills={this.props.currentSkill} />
               : <CurrentSkillDetail isFetching={this.props.isFetching}
-                skills={this.props.currentSkill} />}
+                skills={this.props.currentSkill}
+                />}
       </div>
         )
   }

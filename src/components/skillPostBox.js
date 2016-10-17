@@ -24,10 +24,12 @@ class SkillPostBox extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      open:true
+      authError:true,
+      duplicateError:true
     }
     this.handleLogIn = this.handleLogIn.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.handleDuplicateErrorClose = this.handleDuplicateErrorClose.bind(this)
   }
 
   handleLogIn() {
@@ -39,8 +41,13 @@ class SkillPostBox extends React.Component {
     this.props.handleCancel()
   }
 
+  handleDuplicateErrorClose() {
+    console.log("here")
+    this.props.handleDuplicateErrorCancel()
+  }
+
   render(){
-    const actions = [
+    const authErrorActions = [
         <FlatButton
           label="Cancel"
           primary={true}
@@ -52,8 +59,15 @@ class SkillPostBox extends React.Component {
           keyboardFocused={true}
           onTouchTap={this.handleLogIn}
         />,
-      ];
-    const { handleSubmit, pristine, submitting } = this.props;
+      ]
+    const duplicateErrorActions = [
+      <FlatButton
+        label="Got it!"
+        primary={true}
+        onTouchTap={this.handleDuplicateErrorClose}
+      />
+    ]
+    const { handleSubmit, pristine, submitting, showAuthError, showDuplicateSkillError } = this.props;
     const styles = {
       form: {
         textAlign: 'center',
@@ -80,14 +94,24 @@ class SkillPostBox extends React.Component {
             />
           </div>
         </form>
-        {this.props.showAuthError && <div>
+        {showAuthError && <div>
           <Dialog title="Oops! something went wrong"
-            actions={actions}
+            actions={authErrorActions}
             modal={false}
-            open={this.state.open}
+            open={this.state.authError}
             onRequestClose={this.handleClose}
           >
             Please Log in to add a skill
+          </Dialog>
+        </div>}
+        {showDuplicateSkillError && <div>
+          <Dialog title="It seems like you already assigned that skill!"
+            actions={duplicateErrorActions}
+            modal={false}
+            open={this.state.duplicateError}
+            onRequestClose={this.handleDuplicateErrorCancel}
+          >
+            You can only assign one unique skill per person (including yourself)
           </Dialog>
         </div>}
 

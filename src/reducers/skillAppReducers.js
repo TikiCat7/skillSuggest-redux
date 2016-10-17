@@ -84,7 +84,7 @@ function loggedInUser(state = {name: "null", loggedIn: false, logInInfo:false}, 
   return state
 }
 
-function notification(state = {logInError: false}, action) {
+function notification(state = {logInError: false, duplicateError: false, showSkilLSnackBar: false}, action) {
   switch(action.type) {
     case 'LOGIN_FAILED':
       return {...state, logInError:true}
@@ -92,6 +92,14 @@ function notification(state = {logInError: false}, action) {
       return {...state, logInError:false}
     case 'REMOVE_LOGINERROR':
       return {...state, logInError:false}
+    case 'SHOW_SKILL_ADD_SNACKBAR':
+      return {...state, showSkilLSnackBar:true}
+    case 'HIDE_SKILL_ADD_SNACKBAR':
+      return {...state, showSkilLSnackBar:false}
+    case 'SHOW_DUPLICATE_SKILL_ERROR':
+      return {...state, duplicateError:true}
+    case 'HIDE_DUPLICATE_ERROR':
+      return {...state, duplicateError:false}
     default:
       break
   }

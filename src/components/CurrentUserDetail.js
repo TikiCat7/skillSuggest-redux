@@ -46,14 +46,18 @@ class CurrentUserDetail extends Component {
     return ordered
   }
 
+  //理想は一つのアクションでpayloadによりSnackBarの表示・非表示を制御する
   handleRequestClose() {
     this.props.handleLogInMessage()
+  }
 
+  handleSnackBarClose() {
+    this.props.handleSnackBarClose()
   }
 
   render() {
     //　console.log(this.context)
-    const { currentUserData, logInInfo, disableLogInMessage, isFetching } = this.props
+    const { currentUserData, logInInfo, disableLogInMessage, isFetching, showSnackBar } = this.props
     const userSkills = this.calculateSkillsVotes(currentUserData)
     //console.log(userSkills)
 
@@ -119,7 +123,10 @@ class CurrentUserDetail extends Component {
               <SkillPostBox onSubmit={this.props.onSubmit}
                 showAuthError={this.props.showAuthError}
                 handleLogIn={this.props.handleLogIn}
-                handleCancel={this.props.handleCancel}/>
+                handleCancel={this.props.handleCancel}
+                handleDuplicateErrorCancel={this.props.handleDuplicateErrorCancel}
+                showDuplicateSkillError={this.props.showDuplicateSkillError}
+              />
               <div>
                 <RaisedButton
                   styleName="backButton"
@@ -131,6 +138,12 @@ class CurrentUserDetail extends Component {
                 message={`Logged in as ${logInInfo.name}!`}
                 autoHideDuration={4000}
                 onRequestClose={this.handleRequestClose.bind(this)}
+              />
+              <Snackbar
+                open={showSnackBar}
+                message={`Skill assigned!`}
+                autoHideDuration={4000}
+                onRequestClose={this.handleSnackBarClose.bind(this)}
               />
             </div>}
           </div>

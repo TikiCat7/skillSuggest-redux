@@ -5,8 +5,12 @@ import { Link } from 'react-router'
 //components
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
 import LoadingIndicator from '../components/loadIndicator'
+import Snackbar from 'material-ui/Snackbar'
 
 class CurrentSkillDetail extends React.Component {
+    handleRequestClose() {
+      console.log('fire action to close snackbar for skill add')
+    }
     render() {
       const { isFetching, skills } = this.props
       const styles = {
@@ -75,7 +79,7 @@ class CurrentSkillDetail extends React.Component {
               {uniqueAsigned}
             </ul>
           </div>}
-          </div>
+        </div>
           )
     }
 }

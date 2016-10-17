@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 //import actions, components
-import { getCurrentUser, clearCurrentUser, disableLogInMessage, postNewSkill, logInFail, handleCancel } from '../actions/user'
+import { getCurrentUser, clearCurrentUser, disableLogInMessage, postNewSkill, logInFail, handleCancel, handleDuplicateErrorCancel, disableSkillAddSnackBar } from '../actions/user'
 import CurrentUserDetail from '../components/CurrentUserDetail'
 
 class CurrentUserDataContainer extends React.Component {
@@ -27,12 +27,21 @@ class CurrentUserDataContainer extends React.Component {
     this.props.disableLogInMessage()
   }
 
+  handleSnackBarClose() {
+    console.log("disable snackbar for skill add")
+    this.props.disableSkillAddSnackBar()
+  }
+
   handleLogIn() {
     this.context.router.push('/login')
   }
 
   handleCancel() {
     this.props.handleCancel()
+  }
+
+  handleDuplicateErrorCancel() {
+    this.props.handleDuplicateErrorCancel()
   }
 
   // Fix for nested route issue, seems like a bad idea though
@@ -70,11 +79,15 @@ class CurrentUserDataContainer extends React.Component {
       <CurrentUserDetail currentUserData={this.props.currentUser}
         logInInfo={this.props.loggedInUser}
         handleLogInMessage={this.handleLogInMessage.bind(this)}
+        handleSnackBarClose={this.handleSnackBarClose.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
         showAuthError={this.props.notification.logInError}
+        showDuplicateSkillError={this.props.notification.duplicateError}
         handleLogIn={this.handleLogIn.bind(this)}
         handleCancel={this.handleCancel.bind(this)}
+        handleDuplicateErrorCancel = {this.handleDuplicateErrorCancel.bind(this)}
         isFetching={this.props.isFetching}
+        showSnackBar={this.props.showSnackBar}
       />
     )
   }
@@ -89,7 +102,8 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.skillApp.currentUser,
     loggedInUser: state.skillApp.loggedInUser,
     notification: state.skillApp.notification,
-    isFetching: state.skillApp.isFetching
+    isFetching: state.skillApp.isFetching,
+    showSnackBar: state.skillApp.notification.showSkilLSnackBar
   }
 }
 
@@ -100,7 +114,9 @@ const mapDispatchToProps = (dispatch) => {
     disableLogInMessage,
     postNewSkill,
     logInFail,
-    handleCancel
+    handleCancel,
+    handleDuplicateErrorCancel,
+    disableSkillAddSnackBar
   }, dispatch)
 }
 
