@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { TextField } from 'redux-form-material-ui'
 import RaisedButton from 'material-ui/RaisedButton'
+import { Link } from 'react-router'
 
 const validate = values => {
   const errors = {}
@@ -15,6 +16,10 @@ const validate = values => {
 }
 
 class LogInForm extends React.Component {
+
+  goSignUp() {
+    this.context.router.push('/signup')
+  }
 
   render() {
   const { handleSubmit, pristine, submitting } = this.props;
@@ -51,10 +56,18 @@ class LogInForm extends React.Component {
         <div style={styles.submitButton}>
           <RaisedButton label="Submit" disabled={ pristine || submitting } type="submit"/>
         </div>
+        <div style={styles.submitButton}>
+          <h3>Not a member?</h3>
+          <RaisedButton label='Sign up' onClick={this.goSignUp.bind(this)}/>
+        </div>
       </form>
     </div>
   );
 }
+}
+
+LogInForm.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 LogInForm = reduxForm({
